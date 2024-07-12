@@ -1,6 +1,5 @@
 volumes:
     beta-data:
-        external: true
 services:
     react:
         image: node:lts-bullseye
