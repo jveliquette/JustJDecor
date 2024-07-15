@@ -1,0 +1,32 @@
+{
+  "folders": [
+    {
+      "name": "React App",
+      "path": "ghi/app"
+    },
+    {
+      "name": "Inventory API",
+      "path": "inventory/api"
+    },
+    {
+      "name": "Service API",
+      "path": "service/api"
+    },
+    {
+      "name": "Service Poller",
+      "path": "service/poll"
+    },
+    {
+      "name": "Sales API",
+      "path": "sales/api"
+    },
+    {
+      "name": "Sales Poller",
+      "path": "sales/poll"
+    },
+    {
+      "path": "."
+    }
+  ],
+  "settings": {}
+}
