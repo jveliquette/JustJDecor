@@ -2,8 +2,9 @@
 
 Team:
 
-* Person 1 - Which microservice?
-* Person 2 - Which microservice?
+* Person 1 - Julia - Services microservice
+* Person 2 - Andrew - Sales microservice
+* Julia and Andrew - Inventory microservice
 
 ## Design
 
