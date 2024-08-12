@@ -1,4 +1,4 @@
-function ManufacturerList(props) {
+function ManufacturerList({manufacturers}) {
     return (
         <>
             <h1>Manufacturer List</h1>
@@ -9,7 +9,7 @@ function ManufacturerList(props) {
                     </tr>
                 </thead>
                 <tbody>
-                    {props.manufacturers.map(manufacturer => {
+                    {manufacturers.map(manufacturer => {
                         return (
                             <tr key={manufacturer.id}>
                                 <td> {manufacturer.name} </td>
