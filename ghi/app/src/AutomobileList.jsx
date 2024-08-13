@@ -26,7 +26,7 @@ function AutomobileList({autos}) {
                 </tbody>
             </table>
             ) : (
-                <p>No automobiles available</p>
+                <p>No automobiles available.</p>
             )}
         </>
     )

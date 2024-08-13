@@ -2,6 +2,7 @@ function ManufacturerList({manufacturers}) {
     return (
         <>
             <h1>Manufacturer List</h1>
+            {manufacturers && manufacturers.length > 0 ? (
             <table className="table table-striped">
                 <thead>
                     <tr>
@@ -18,6 +19,9 @@ function ManufacturerList({manufacturers}) {
                     })}
                 </tbody>
             </table>
+            ) : (
+                <p>No manufacturers available.</p>
+            )}
         </>
     )
 }

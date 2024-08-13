@@ -3,6 +3,7 @@ function VehicleModelsList({models}) {
     return (
         <>
             <h1>Models</h1>
+            {models && models.length > 0 ? (
             <table className="table table-striped">
                 <thead>
                     <tr>
@@ -22,6 +23,9 @@ function VehicleModelsList({models}) {
 
                 </tbody>
             </table>
+            ) : (
+                <p>No models available.</p>
+            )}
         </>
     )
 }
