@@ -174,5 +174,38 @@ def api_delete_appointment(request, id):
 
 # update appointment status to "canceled" or "finished" (PUT)
 @require_http_methods(["PUT"])
-def api_update_appointment_status():
-    pass
+def api_update_appointment_status(request, id, status):
+    # match URL to status
+    status_dict = {
+        "cancel": "canceled",
+        "finish": "finished"
+    }
+
+    # check if updated status is either canceled (cancel) or finished (finish)
+    if status not in status_dict:
+        return JsonResponse(
+            {"Error": "Invalid status."},
+            status=400
+        )
+    try:
+        # get the appointment
+        appointment = Appointment.objects.get(id=id)
+        # update status
+        appointment.status = status_dict[status]
+        appointment.save()
+        return JsonResponse(
+            appointment,
+            encoder=AppointmentEncoder,
+            safe=False
+        )
+    except Appointment.DoesNotExist:
+        return JsonResponse(
+            {"Error": "Appointment not found."},
+            status=404,
+        )
+
+    except Exception as e:
+        return JsonResponse(
+            {"Error": f"{str(e)}"},
+            status=400
+        )
