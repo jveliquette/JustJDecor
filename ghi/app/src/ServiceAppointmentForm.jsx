@@ -34,10 +34,16 @@ function ServiceAppointmentForm() {
         setCustomerName(value);
     }
 
-    const [dateTime, setDateTime] = useState('');
-    const handleDateTimeChange = (event) => {
+    const [date, setDate] = useState('');
+    const handleDateChange = (event) => {
         const value = event.target.value;
-        setDateTime(value);
+        setDate(value);
+    }
+
+    const [time, setTime] = useState('');
+    const handleTimeChange = (event) => {
+        const value = event.target.value;
+        setTime(value);
     }
 
     const [technicianId, setTechnicianId] = useState('');
@@ -55,6 +61,8 @@ function ServiceAppointmentForm() {
     // Form submission
     const handleSubmit = async (event) => {
         event.preventDefault();
+        // combine date and time
+        const dateTime = `${date}T${time}`
         // create empty JSON object
         const data = {};
         data.vin = vin;
@@ -92,7 +100,8 @@ function ServiceAppointmentForm() {
     const resetForm = () => {
         setVin('');
         setCustomerName('');
-        setDateTime('');
+        setDate('');
+        setTime('');
         setTechnicianId('');
         setReason('');
     }
@@ -112,8 +121,12 @@ function ServiceAppointmentForm() {
                             <input onChange={handleCustomerNameChange} value={customerName} required type="text" name="customer" id="customer" className="form-control" />
                         </div>
                         <div className="mb-3">
-                            <label className="form-label" htmlFor="date_time">Date and Time</label>
-                            <input onChange={handleDateTimeChange} value={dateTime} placeholder="Date and Time" required type="datetime-local" name="date_time" id="date_time" className="form-control" />
+                            <label className="form-label" htmlFor="date">Date</label>
+                            <input onChange={handleDateChange} value={date} placeholder="Date" required type="date" name="date" id="date" className="form-control" />
+                        </div>
+                        <div className="mb-3">
+                            <label className="form-label" htmlFor="time">Time</label>
+                            <input onChange={handleTimeChange} value={time} placeholder="Time" required type="time" name="time" id="time" className="form-control" />
                         </div>
                         <div className="mb-3">
                             <label className="form-label" htmlFor="technician">Assigned Technician</label>
