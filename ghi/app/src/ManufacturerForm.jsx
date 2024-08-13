@@ -13,7 +13,6 @@ function ManufacturerForm() {
     // Form submission
     const handleSubmit = async (event) => {
         event.preventDefault();
-        // create empty JSON object
         const data = {
         name: manufacturer,
         }
