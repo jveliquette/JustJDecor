@@ -16,19 +16,21 @@ root.render(
 
 async function loadData() {
 	try {
-		const [manufacturerResponse, modelsResponse] = await Promise.all([
+		const [manufacturerResponse, modelsResponse, autosResponse] = await Promise.all([
 			fetch('http://localhost:8100/api/manufacturers/'),
-            fetch('http://localhost:8100/api/models/')
+            fetch('http://localhost:8100/api/models/'),
+			fetch('http://localhost:8100/api/automobiles/'),
 		]);
 
-		if (manufacturerResponse.ok && modelsResponse.ok) {
+		if (manufacturerResponse.ok && modelsResponse.ok && autosResponse.ok) {
 			const manufacturersData = await manufacturerResponse.json();
 			const modelsData = await modelsResponse.json();
+			const autosData = await autosResponse.json();
 
 			root.render(
 				<React.StrictMode>
 					<BrowserRouter>
-						<App manufacturers={manufacturersData.manufacturers} models={modelsData.models} />
+						<App manufacturers={manufacturersData.manufacturers} models={modelsData.models} autos={autosData.autos}/>
 					</BrowserRouter>
 				</React.StrictMode>
 			);
