@@ -27,6 +27,7 @@ class TechnicianEncoder(ModelEncoder):
 class AppointmentEncoder(ModelEncoder):
     model = Appointment
     properties = [
+        "id",
         "date_time",
         "reason",
         "status",
@@ -160,8 +161,16 @@ def api_list_appointments(request):
 
 # delete appointment (DELETE)
 @require_http_methods(["DELETE"])
-def api_delete_appointment():
-    pass
+def api_delete_appointment(request, id):
+    try:
+        count, _ = Appointment.objects.filter(id=id).delete()
+        return JsonResponse({"Deleted": count > 0})
+    except Appointment.DoesNotExist:
+        return JsonResponse(
+            {"Error": "Appointment not found."},
+            status=404,
+        )
+
 
 # update appointment status to "canceled" or "finished" (PUT)
 @require_http_methods(["PUT"])
