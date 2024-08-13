@@ -18,6 +18,7 @@ class AutomobileVODetailEncoder(ModelEncoder):
 class TechnicianEncoder(ModelEncoder):
     model = Technician
     properties = [
+        "id",
         "first_name",
         "last_name",
         "employee_id",
@@ -71,8 +72,15 @@ def api_list_technicians(request):
 
 # delete technician (DELETE)
 @require_http_methods(["DELETE"])
-def api_delete_technician():
-    pass
+def api_delete_technician(request, id):
+    try:
+        count, _ = Technician.objects.filter(id=id).delete()
+        return JsonResponse({"Deleted": count > 0})
+    except Technician.DoesNotExist:
+        return JsonResponse(
+                {"Error": "Technician not found."},
+                status=404,
+            )
 
 # list appointments, add appointment (GET, POST)
 @require_http_methods(["GET", "POST"])
