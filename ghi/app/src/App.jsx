@@ -15,7 +15,7 @@ function App({models, manufacturers, autos}) {
 	return (
 		<>
 			<Nav />
-			<div className="container">
+			<div className="container mt-4">
 				<Routes>
 					<Route path="/" element={<MainPage />} />
 					<Route path="/manufacturers/new" element={<ManufacturerForm />} />
