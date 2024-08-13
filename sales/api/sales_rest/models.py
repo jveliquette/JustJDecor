@@ -1,21 +1,11 @@
 from django.db import models
 from django.urls import reverse
-from inventory.api.inventory_rest.models import Automobile
 
 # Create your models here.
 #AutomobileVO
 class AutomobileVO(models.Model):
-    import_href = models.CharField(max_length=200, unique=True)
-    color = models.CharField(max_length=50)
-    year = models.PositiveSmallIntegerField()
     vin = models.CharField(max_length=17, unique=True)
     sold = models.BooleanField(default=False)
-
-    model = models.ForeignKey(
-        Automobile,
-        related_name="automobiles",
-        on_delete=models.CASCADE,
-    )
 
 #Salesperson Model
 class Salesperson(models.Model):

@@ -19,6 +19,7 @@ class SalespersonEncoder(ModelEncoder):
 #This function will be for listing the salespeople
 @require_http_methods(["GET", "POST"])
 def list_salespeople(request):
+    print("Get request working")
     if request.method == "GET":
         salespeople = Salesperson.objects.all()
         return JsonResponse(
@@ -33,3 +34,19 @@ def list_salespeople(request):
             encoder=SalespersonEncoder,
             safe=False,
         )
+
+#@require_http_methods(["DELETE", "GET"])
+#def show_salesperson(request, id):
+ #   if request.method == "GET":
+  #      try:
+   #         salesperson = Salesperson.objects.get(id=id)
+    #        return JsonResponse(
+     #           salesperson,
+      #          encoder=SalespersonEncoder,
+       #         safe=False
+        #    )
+    #try:
+     #   if request.method == "DELETE":
+      #      count, _ = Salesperson.objects.filter(id=id).delete()
+       #     return JsonResponse({ "deleted": count > 0})
+       # e
