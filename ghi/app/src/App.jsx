@@ -7,6 +7,8 @@ import VehicleModelsList from "./VehicleModelsList";
 import VehicleModelForm from "./VehicleModelForm";
 import AutomobileList from "./AutomobileList";
 import AutomobileForm from "./AutomobileForm";
+import TechnicianForm from "./TechnicianForm";
+import TechnicianList from "./TechnicianList";
 
 
 function App({models, manufacturers, autos}) {
@@ -16,12 +18,14 @@ function App({models, manufacturers, autos}) {
 			<div className="container">
 				<Routes>
 					<Route path="/" element={<MainPage />} />
-					<Route path="/manufacturers" element={<ManufacturerList manufacturers={manufacturers}/>} />
 					<Route path="/manufacturers/new" element={<ManufacturerForm />} />
-					<Route path="/models" element={<VehicleModelsList models={models}/>} />
+					<Route path="/manufacturers" element={<ManufacturerList manufacturers={manufacturers}/>} />
 					<Route path="/models/new" element={<VehicleModelForm />} />
-					<Route path="/automobiles" element={<AutomobileList autos={autos}/>} />
+					<Route path="/models" element={<VehicleModelsList models={models}/>} />
 					<Route path="/automobiles/new" element={<AutomobileForm />} />
+					<Route path="/automobiles" element={<AutomobileList autos={autos}/>} />
+					<Route path="/technicians/new" element={<TechnicianForm />} />
+					<Route path="/technicians" element={<TechnicianList />} />
 				</Routes>
 			</div>
 		</>
