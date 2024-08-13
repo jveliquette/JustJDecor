@@ -52,11 +52,16 @@ def api_list_technicians(request):
     else:
         try:
             content = json.loads(request.body)
-            if "first_name" not in content or "last_name" not in content or "employee_id" not in content:
-                return JsonResponse(
-                    {"Error": "Missing required field."},
-                    status=400,
-                )
+
+            # make sure all fields are included
+            required_fields = ["first_name", "last_name", "employee_id"]
+            for field in required_fields:
+                if field not in content:
+                    return JsonResponse(
+                        {"Error": f"Missing required field: {field}"},
+                        status=400,
+                    )
+            # create technician
             technician = Technician.objects.create(**content)
             return JsonResponse(
                 technician,
@@ -64,11 +69,24 @@ def api_list_technicians(request):
                 safe=False
             )
 
+        except json.JSONDecodeError:
+            return JsonResponse(
+                {"Error": "Invalid JSON"},
+                status=400
+            )
+
         except Technician.DoesNotExist:
             return JsonResponse(
                 {"Error": "Technician not found."},
                 status=404,
             )
+
+        except Exception as e:
+            return JsonResponse(
+                {"Error": f"{str(e)}"},
+                status=400
+            )
+
 
 # delete technician (DELETE)
 @require_http_methods(["DELETE"])
@@ -84,8 +102,61 @@ def api_delete_technician(request, id):
 
 # list appointments, add appointment (GET, POST)
 @require_http_methods(["GET", "POST"])
-def api_list_appointments():
-    pass
+def api_list_appointments(request):
+    if request.method == "GET":
+        appointments = Appointment.objects.all()
+        return JsonResponse(
+            {"appointments": list(appointments)},
+            encoder=AppointmentEncoder,
+            safe=False
+        )
+    else:
+        try:
+            content = json.loads(request.body)
+
+            # make sure all fields are included
+            required_fields = ["date_time", "reason", "status", "vin", "customer", "technician"]
+            for field in required_fields:
+                if field not in content:
+                    return JsonResponse(
+                        {"Error": f"Missing required field: {field}"},
+                        status=400,
+                    )
+            # make sure technician exists
+            try:
+                technician = Technician.objects.get(id=content["technician"])
+            except Technician.DoesNotExist:
+                return JsonResponse(
+                    {"Error": "Technician not found."},
+                    status=404,
+                )
+            # create appointment
+            appointment = Appointment.objects.create(
+                date_time=content["date_time"],
+                reason=content["reason"],
+                status=content["status"],
+                vin=content["vin"],
+                customer=content["customer"],
+                technician=technician
+            )
+            return JsonResponse(
+                appointment,
+                encoder=AppointmentEncoder,
+                safe=False
+            )
+
+        except json.JSONDecodeError:
+            return JsonResponse(
+                {"Error": "Invalid JSON"},
+                status=400
+            )
+
+        except Exception as e:
+            return JsonResponse(
+                {"Error": f"{str(e)}"},
+                status=400
+            )
+
 
 # delete appointment (DELETE)
 @require_http_methods(["DELETE"])
