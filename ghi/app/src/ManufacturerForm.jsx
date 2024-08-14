@@ -1,22 +1,17 @@
 import { useState } from "react";
 
 function ManufacturerForm() {
-    // States and handlers
     const [manufacturer, setManufacturer] = useState('');
     const handleManufacturerChange = (event) => {
         const value = event.target.value;
         setManufacturer(value);
     }
 
-
-
-    // Form submission
     const handleSubmit = async (event) => {
         event.preventDefault();
         const data = {
         name: manufacturer,
         }
-
         const manufacturerUrl = 'http://localhost:8100/api/manufacturers/';
         const fetchConfig = {
             method: "post",
@@ -25,7 +20,6 @@ function ManufacturerForm() {
                 'Content-Type': "application/json",
             }
         };
-
         try {
             const response = await fetch(manufacturerUrl, fetchConfig);
             if (response.ok) {

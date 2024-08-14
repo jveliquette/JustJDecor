@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 function AutomobileForm() {
     const [models, setModels] = useState([]);
 
-    // Fetch models
     const fetchData = async () => {
         const url = "http://localhost:8100/api/models/";
         const response = await fetch(url);
@@ -16,7 +15,6 @@ function AutomobileForm() {
         }
     };
 
-    // States and handlers
     const [color, setColor] = useState('');
     const handleColorChange = (event) => {
         const value = event.target.value;
@@ -45,10 +43,8 @@ function AutomobileForm() {
         fetchData();
     }, []);
 
-    // Form submission
     const handleSubmit = async (event) => {
         event.preventDefault();
-        // create empty JSON object
         const data = {};
         data.color = color;
         data.year = year;
@@ -78,7 +74,6 @@ function AutomobileForm() {
         }
     }
 
-    // reset form
     const resetForm = () => {
         setColor('');
         setYear('');

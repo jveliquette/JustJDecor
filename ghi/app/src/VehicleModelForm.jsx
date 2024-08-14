@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 function VehicleModelForm() {
     const [manufacturers, setManufacturers] = useState([]);
 
-    // Fetch manufacturers
     const fetchData = async () => {
         const url = "http://localhost:8100/api/manufacturers/";
         const response = await fetch(url);
@@ -16,7 +15,6 @@ function VehicleModelForm() {
         }
     };
 
-    // States and handlers
     const [name, setName] = useState('');
     const handleNameChange = (event) => {
         const value = event.target.value;
@@ -35,21 +33,16 @@ function VehicleModelForm() {
         setManufacturerId(value);
     }
 
-
     useEffect(() => {
         fetchData();
     }, []);
 
-
-    // Form submission
     const handleSubmit = async (event) => {
         event.preventDefault();
-        // create empty JSON object
         const data = {};
         data.name = name;
         data.picture_url = pictureUrl;
         data.manufacturer_id = manufacturerId;
-
         const modelUrl = "http://localhost:8100/api/models/";
         const fetchConfig = {
             method: "post",
@@ -58,7 +51,6 @@ function VehicleModelForm() {
                 'Content-Type': "application/json",
             }
         };
-
         try {
             const response = await fetch(modelUrl, fetchConfig);
             if (response.ok) {
@@ -72,8 +64,7 @@ function VehicleModelForm() {
             console.error('Fetch error:', e);
         }
     }
-
-    // reset form
+    
     const resetForm = () => {
         setName('');
         setPictureUrl('');
