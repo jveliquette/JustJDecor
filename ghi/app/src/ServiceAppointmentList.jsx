@@ -38,9 +38,6 @@ function ServiceAppointmentList() {
         fetchAutos();
     }, []);
 
-    // TODO:
-    // date time string split into date and time individually
-
     // Status change
     const handleStatusChange = async (appointmentId, newStatus) => {
         const url = `http://localhost:8080/api/appointments/${appointmentId}/${newStatus}/`
@@ -62,6 +59,18 @@ function ServiceAppointmentList() {
             console.error('Fetch error:', e);
         }
     };
+
+    // Reformat date_time to individual date and time strings
+    const formattedDate = (dateString) => {
+        const date = new Date(dateString);
+        return date.toLocaleDateString();
+    };
+
+    const formattedTime = (dateString) => {
+        const date = new Date(dateString);
+        return date.toLocaleTimeString([], {hour: "2-digit", minute: "2-digit"})
+    }
+
 
     return (
         <>
@@ -85,8 +94,8 @@ function ServiceAppointmentList() {
                             <td>{appointment.vin}</td>
                             <td>{isVip(appointment.vin) ? "Yes" : "No"}</td>
                             <td>{appointment.customer}</td>
-                            <td></td>
-                            <td></td>
+                            <td>{formattedDate(appointment.date_time)}</td>
+                            <td>{formattedTime(appointment.date_time)}</td>
                             <td>{appointment.technician.first_name}</td>
                             <td>{appointment.reason}</td>
                             <td>
