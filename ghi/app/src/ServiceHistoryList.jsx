@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 function ServiceHistory() {
     const [appointments, setAppointments] = useState([]);
     const [automobiles, setAutomobiles] = useState([]);
+    const [filteredAppointments, setFilteredAppointments] = useState([]);
 
     // Fetch all appointments
     const fetchAppointments = async () => {
@@ -11,6 +12,7 @@ function ServiceHistory() {
         if (response.ok) {
             const data = await response.json();
             setAppointments(data.appointments);
+            setFilteredAppointments(data.appointments);
         } else {
             console.error("Failed to load appointments")
         }
@@ -36,9 +38,6 @@ function ServiceHistory() {
         fetchAutos();
     }, []);
 
-    // Search functionality
-    
-
     // Reformat date_time to individual date and time strings
     const formattedDate = (dateString) => {
         const date = new Date(dateString);
@@ -50,9 +49,32 @@ function ServiceHistory() {
         return date.toLocaleTimeString([], {hour: "2-digit", minute: "2-digit"})
     }
 
+    // States and handlers
+    const [vinSearch, setVinSearch] = useState('')
+    const handleVinChange = (event) => {
+        const value = event.target.value;
+        setVinSearch(value);
+    }
+    const handleVinSearch = (event) => {
+        event.preventDefault();
+        if (vinSearch.trim() === '') {
+            setFilteredAppointments(appointments);
+        } else {
+            setFilteredAppointments(appointments.filter(appointment => appointment.vin.includes(vinSearch)));
+        }
+
+    }
+
     return (
         <>
         <h1>Service History</h1>
+        <form onSubmit={handleVinSearch} className="d-flex mb-4">
+            <div className="form-floating flex-grow-1 me-2">
+                <input onChange={handleVinChange} value={vinSearch} placeholder="Search by VIN..." type="text" name="search" id="search" className="form-control"/>
+                <label htmlFor="search">Search by VIN...</label>
+            </div>
+            <button className="btn btn-dark" type="submit">Search</button>
+        </form>
         <table className="table table-striped">
             <thead>
                 <tr>
@@ -67,7 +89,7 @@ function ServiceHistory() {
                 </tr>
             </thead>
             <tbody>
-                {appointments.map(appointment => (
+                {filteredAppointments.map(appointment => (
                     <tr key={appointment.id}>
                         <td>{appointment.vin}</td>
                         <td>{isVip(appointment.vin) ? "Yes" : "No"}</td>
