@@ -5,7 +5,6 @@ function ServiceHistory() {
     const [automobiles, setAutomobiles] = useState([]);
     const [filteredAppointments, setFilteredAppointments] = useState([]);
 
-    // Fetch all appointments
     const fetchAppointments = async () => {
         const url = "http://localhost:8080/api/appointments/";
         const response = await fetch(url);
@@ -18,7 +17,6 @@ function ServiceHistory() {
         }
     };
 
-    // Fetch all automobiles
     const fetchAutos = async () => {
         const url = "http://localhost:8100/api/automobiles/";
         const response = await fetch(url);
@@ -30,15 +28,13 @@ function ServiceHistory() {
         }
     };
 
-    // If VIN # was sold, auto = VIP
-    const isVip = (vin) => automobiles.some(auto => auto.vin === vin && auto.sold);
-
     useEffect(() => {
         fetchAppointments();
         fetchAutos();
     }, []);
 
-    // Reformat date_time to individual date and time strings
+    const isVip = (vin) => automobiles.some(auto => auto.vin === vin && auto.sold);
+
     const formattedDate = (dateString) => {
         const date = new Date(dateString);
         return date.toLocaleDateString();
@@ -49,12 +45,13 @@ function ServiceHistory() {
         return date.toLocaleTimeString([], {hour: "2-digit", minute: "2-digit"})
     }
 
-    // States and handlers
     const [vinSearch, setVinSearch] = useState('')
+    
     const handleVinChange = (event) => {
         const value = event.target.value;
         setVinSearch(value);
     }
+
     const handleVinSearch = (event) => {
         event.preventDefault();
         if (vinSearch.trim() === '') {

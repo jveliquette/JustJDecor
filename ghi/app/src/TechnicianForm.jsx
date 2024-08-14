@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 function TechnicianForm() {
-    // States and handlers
     const [firstName, setFirstName] = useState('');
     const handleFirstNameChange = (event) => {
         const value = event.target.value;
@@ -20,15 +19,12 @@ function TechnicianForm() {
         setEmployeeId(value);
     }
 
-    // Form submission
     const handleSubmit = async (event) => {
         event.preventDefault();
-        // create empty JSON object
         const data = {};
         data.first_name = firstName;
         data.last_name = lastName;
         data.employee_id = employeeId;
-
         const technicianUrl = "http://localhost:8080/api/technicians/";
         const fetchConfig = {
             method: "post",
@@ -37,7 +33,6 @@ function TechnicianForm() {
                 'Content-Type': "application/json",
             }
         };
-
         try {
             const response = await fetch(technicianUrl, fetchConfig);
             if (response.ok) {
@@ -52,7 +47,6 @@ function TechnicianForm() {
         }
     }
 
-    // reset form
     const resetForm = () => {
         setFirstName('');
         setLastName('');
@@ -83,6 +77,5 @@ function TechnicianForm() {
             </div>
         </div>
     )
-
 }
 export default TechnicianForm;

@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 
 function ServiceAppointmentForm() {
     const [technicians, setTechnicians] = useState([]);
-
-    // Fetch technicians
+    
     const fetchData = async () => {
         const url = "http://localhost:8080/api/technicians/";
         const response = await fetch(url);
@@ -19,8 +18,6 @@ function ServiceAppointmentForm() {
     useEffect(() => {
         fetchData();
     }, []);
-
-    // States and handlers
 
     const [vin, setVin] = useState('');
     const handleVinChange = (event) => {
@@ -58,12 +55,9 @@ function ServiceAppointmentForm() {
         setReason(value);
     }
 
-    // Form submission
     const handleSubmit = async (event) => {
         event.preventDefault();
-        // combine date and time
         const dateTime = `${date}T${time}`
-        // create empty JSON object
         const data = {};
         data.vin = vin;
         data.customer = customerName;
@@ -71,7 +65,6 @@ function ServiceAppointmentForm() {
         data.technician = technicianId;
         data.reason = reason;
         data.status = "scheduled";
-
         const serviceAppointmentUrl = "http://localhost:8080/api/appointments/"
         const fetchConfig = {
             method: "post",
@@ -80,7 +73,6 @@ function ServiceAppointmentForm() {
                 'Content-Type': "application/json",
             }
         };
-
         try {
             const response = await fetch(serviceAppointmentUrl, fetchConfig);
             if (response.ok) {
@@ -96,7 +88,6 @@ function ServiceAppointmentForm() {
         }
     }
 
-    // reset form
     const resetForm = () => {
         setVin('');
         setCustomerName('');
@@ -149,6 +140,5 @@ function ServiceAppointmentForm() {
             </div>
         </div>
     )
-
 }
 export default ServiceAppointmentForm;

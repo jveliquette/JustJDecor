@@ -45,6 +45,5 @@ function TechnicianList() {
             </table>
         </>
     )
-
 }
 export default TechnicianList;

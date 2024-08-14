@@ -2,15 +2,14 @@ import { useEffect, useState } from "react";
 
 function ServiceAppointmentList() {
     const [appointments, setAppointments] = useState([]);
+
     const [automobiles, setAutomobiles] = useState([]);
 
-    // Fetch scheduled appointments
     const fetchAppointments = async () => {
         const url = "http://localhost:8080/api/appointments/";
         const response = await fetch(url);
         if (response.ok) {
             const data = await response.json();
-            // filter scheduled appointments
             const scheduledAppointments = data.appointments.filter(appointment => appointment.status === "scheduled");
             setAppointments(scheduledAppointments)
         } else {
@@ -18,7 +17,6 @@ function ServiceAppointmentList() {
         }
     };
 
-    // Fetch all automobiles
     const fetchAutos = async () => {
         const url = "http://localhost:8100/api/automobiles/";
         const response = await fetch(url);
@@ -30,15 +28,13 @@ function ServiceAppointmentList() {
         }
     };
 
-    // If VIN # was sold, auto = VIP
-    const isVip = (vin) => automobiles.some(auto => auto.vin === vin && auto.sold);
-
     useEffect(() => {
         fetchAppointments();
         fetchAutos();
     }, []);
 
-    // Status change
+    const isVip = (vin) => automobiles.some(auto => auto.vin === vin && auto.sold);
+
     const handleStatusChange = async (appointmentId, newStatus) => {
         const url = `http://localhost:8080/api/appointments/${appointmentId}/${newStatus}/`
         const fetchConfig = {
@@ -47,7 +43,6 @@ function ServiceAppointmentList() {
                 'Content-Type': "application/json",
             }
         };
-
         try {
             const response = await fetch(url, fetchConfig);
             if (response.ok) {
@@ -60,7 +55,6 @@ function ServiceAppointmentList() {
         }
     };
 
-    // Reformat date_time to individual date and time strings
     const formattedDate = (dateString) => {
         const date = new Date(dateString);
         return date.toLocaleDateString();
@@ -70,7 +64,6 @@ function ServiceAppointmentList() {
         const date = new Date(dateString);
         return date.toLocaleTimeString([], {hour: "2-digit", minute: "2-digit"})
     }
-
 
     return (
         <>
