@@ -156,7 +156,7 @@ def list_sales(request):
         else:
                 return JsonResponse({"message": "Incorrectly formatted request body. Request body must be of type: application/json"}, status=400)
 
-#This is the get/update/delete for sale. THIS DRAFT UNTESTED!!!
+#This is the get/update/delete for sale is good to go.
 @require_http_methods(["DELETE", "PUT", "GET"])
 def show_sale(request, id):
     try:
