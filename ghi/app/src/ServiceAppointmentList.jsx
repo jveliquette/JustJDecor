@@ -96,7 +96,7 @@ function ServiceAppointmentList() {
                             <td>{appointment.customer}</td>
                             <td>{formattedDate(appointment.date_time)}</td>
                             <td>{formattedTime(appointment.date_time)}</td>
-                            <td>{appointment.technician.first_name}</td>
+                            <td>{appointment.technician.first_name} {appointment.technician.last_name}</td>
                             <td>{appointment.reason}</td>
                             <td>
                                 <button className="btn btn-danger" onClick={() => handleStatusChange(appointment.id, 'cancel')}>
