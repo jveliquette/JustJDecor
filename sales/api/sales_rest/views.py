@@ -52,7 +52,7 @@ class SaleEncoder(ModelEncoder):
     }
 
 # Create your views here.
-#This function will be for listing the salespeople. This is g2g
+#This function is fully operational. It handles the list of salespeople and creating salesperson
 @require_http_methods(["GET", "POST"])
 def list_salespeople(request):
     if request.method == "GET":
@@ -70,7 +70,7 @@ def list_salespeople(request):
             safe=False,
         )
 
-#Delete g2g, get g2g,
+#This function is fully operational. It handles requests for salesperson
 @require_http_methods(["DELETE", "GET", "PUT"])
 def show_salesperson(request, id):
     try:
@@ -89,7 +89,7 @@ def show_salesperson(request, id):
     except Salesperson.DoesNotExist:
         return JsonResponse({"message": "Salesperson not found"}, status=404)
 
-#The code below is to list and create a customer. This is g2g
+#This function is fully operational. It handles the list of customers and creating customer
 @require_http_methods(["GET", "POST"])
 def list_customers(request):
     if request.method == "GET":
@@ -107,12 +107,24 @@ def list_customers(request):
             safe=False,
         )
 
-#Delete g2g
-@require_http_methods(["DELETE", "GET"])
+#This function is fully operational. It handles requests for customer
+@require_http_methods(["DELETE", "GET", "PUT"])
 def show_customer(request, id):
-    if request.method == "DELETE":
-        count, _ = Customer.objects.filter(id=id).delete()
-        return JsonResponse({ "deleted": count > 0})
+    try:
+        if request.method == "DELETE":
+            count, _ = Customer.objects.filter(id=id).delete()
+            return JsonResponse({ "deleted": count > 0})
+        elif request.method == "PUT":
+            customer = Customer.objects.get(id=id)
+            content = json.loads(request.body)
+            Customer.objects.filter(id=id).update(**content)
+            customer = Customer.objects.get(id=id)
+            return JsonResponse(customer, encoder=CustomerEncoder, safe=False)
+        else:
+            customer = Customer.objects.get(id=id)
+            return JsonResponse(customer, encoder=CustomerEncoder, safe=False)
+    except Customer.DoesNotExist:
+        return JsonResponse({"message": "Customer not found"}, status=404)
 
 #This is get/create for Sales
 @require_http_methods(["GET", "POST"])
