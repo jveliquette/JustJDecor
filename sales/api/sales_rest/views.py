@@ -71,7 +71,7 @@ def list_salespeople(request):
         )
 
 #This function is fully operational. It handles requests for salesperson
-@require_http_methods(["DELETE", "GET", "PUT"])
+@require_http_methods(["DELETE", "PUT", "GET"])
 def show_salesperson(request, id):
     try:
         if request.method == "DELETE":
@@ -108,7 +108,7 @@ def list_customers(request):
         )
 
 #This function is fully operational. It handles requests for customer
-@require_http_methods(["DELETE", "GET", "PUT"])
+@require_http_methods(["DELETE", "PUT", "GET"])
 def show_customer(request, id):
     try:
         if request.method == "DELETE":
@@ -126,20 +126,58 @@ def show_customer(request, id):
     except Customer.DoesNotExist:
         return JsonResponse({"message": "Customer not found"}, status=404)
 
-#This is get/create for Sales
+#This is get/create for Sales it works
 @require_http_methods(["GET", "POST"])
 def list_sales(request):
     if request.method == "GET":
+        print("Get request is working")
         sales = Sale.objects.all()
+        print(sales, "This is what is in sales")
         return JsonResponse(
             {"sales": sales},
             encoder=SaleEncoder
         )
     else:
-        content = json.loads(request.body)
-        sale = Sale.objects.create(**content)
-        return JsonResponse(
-            sale,
-            encoder=SaleEncoder,
-            safe=False,
-        )
+        if request.content_type == "application/json":
+            content = json.loads(request.body)
+            print(content, "This is the content")
+            try:
+                automobile = AutomobileVO.objects.get(id=content["automobile"])
+                content["automobile"] = automobile
+                print(automobile)
+                salesperson = Salesperson.objects.get(id=content["salesperson"])
+                content["salesperson"] = salesperson
+                print(salesperson)
+                customer = Customer.objects.get(id=content["customer"])
+                content["customer"] = customer
+                print(customer)
+                sale = Sale.objects.create(**content)
+                print(sale, "This is the sale")
+                return JsonResponse(
+                    sale,
+                    encoder=SaleEncoder,
+                    safe=False,
+                    status=201)
+            except AutomobileVO.DoesNotExist:
+                return JsonResponse({"message": "Automobile does not exist"}, status=400)
+        else:
+                return JsonResponse({"message": "Incorrectly formatted request body. Request body must be of type: application/json"}, status=400)
+
+#This is the get/update/delete for sale. THIS DRAFT UNTESTED!!!
+@require_http_methods(["DELETE" "PUT", "GET"])
+def show_sale(request, id):
+    try:
+        if request.method == "DELETE":
+            count, _ = Sale.objects.filter(id=id).delete()
+            return JsonResponse({"deleted": count > 0})
+        elif request.method == "PUT":
+            sale = Sale.objects.get(id=id)
+            content = json.loads(request.body)
+            Sale.objects.filter(id=id).update(**content)
+            sale = Sale.objects.get(id=id)
+            return JsonResponse(sale, encoder=SaleEncoder, safe=False)
+        else:
+            sale = Sale.objects.get(id=id)
+            return JsonResponse(sale, encoder=SaleEncoder, safe=False)
+    except Sale.DoesNotExist:
+        return JsonResponse({"message": "Sale not found"}, status=404)

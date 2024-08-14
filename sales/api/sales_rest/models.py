@@ -34,7 +34,7 @@ class Customer(models.Model):
 
 #Sale Model: Automobile foreign key need inventory to be complete
 class Sale(models.Model):
-    price = models.DecimalField(max_digits=6, decimal_places=2)
+    price = models.PositiveSmallIntegerField()
 
     automobile = models.ForeignKey(
         AutomobileVO,

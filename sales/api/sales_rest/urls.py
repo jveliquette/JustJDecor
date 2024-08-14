@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import list_salespeople, show_salesperson, list_customers, show_customer, list_sales
+from .views import list_salespeople, show_salesperson, list_customers, show_customer, list_sales, show_sale
 
 urlpatterns = [
     path(
@@ -27,9 +27,9 @@ urlpatterns = [
         list_sales,
         name="list_sales",
     ),
-    #path(
-     #   "sales/<:id>/",
-      #  show_sale,
-       # name="show_sale",
-    #)
+    path(
+        "sales/<int:id>/",
+        show_sale,
+        name="show_sale",
+    )
 ]
