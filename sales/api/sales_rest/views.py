@@ -130,9 +130,7 @@ def show_customer(request, id):
 @require_http_methods(["GET", "POST"])
 def list_sales(request):
     if request.method == "GET":
-        print("Get request is working")
         sales = Sale.objects.all()
-        print(sales, "This is what is in sales")
         return JsonResponse(
             {"sales": sales},
             encoder=SaleEncoder
@@ -140,19 +138,14 @@ def list_sales(request):
     else:
         if request.content_type == "application/json":
             content = json.loads(request.body)
-            print(content, "This is the content")
             try:
                 automobile = AutomobileVO.objects.get(id=content["automobile"])
                 content["automobile"] = automobile
-                print(automobile)
                 salesperson = Salesperson.objects.get(id=content["salesperson"])
                 content["salesperson"] = salesperson
-                print(salesperson)
                 customer = Customer.objects.get(id=content["customer"])
                 content["customer"] = customer
-                print(customer)
                 sale = Sale.objects.create(**content)
-                print(sale, "This is the sale")
                 return JsonResponse(
                     sale,
                     encoder=SaleEncoder,
@@ -164,7 +157,7 @@ def list_sales(request):
                 return JsonResponse({"message": "Incorrectly formatted request body. Request body must be of type: application/json"}, status=400)
 
 #This is the get/update/delete for sale. THIS DRAFT UNTESTED!!!
-@require_http_methods(["DELETE" "PUT", "GET"])
+@require_http_methods(["DELETE", "PUT", "GET"])
 def show_sale(request, id):
     try:
         if request.method == "DELETE":
