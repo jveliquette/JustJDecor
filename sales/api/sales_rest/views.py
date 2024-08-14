@@ -70,12 +70,24 @@ def list_salespeople(request):
             safe=False,
         )
 
-#Delete g2g
-@require_http_methods(["DELETE", "GET"])
+#Delete g2g, get g2g,
+@require_http_methods(["DELETE", "GET", "PUT"])
 def show_salesperson(request, id):
-    if request.method == "DELETE":
-        count, _ = Salesperson.objects.filter(id=id).delete()
-        return JsonResponse({ "deleted": count > 0})
+    try:
+        if request.method == "DELETE":
+            count, _ = Salesperson.objects.filter(id=id).delete()
+            return JsonResponse({ "deleted": count > 0})
+        elif request.method == "PUT":
+            salesperson = Salesperson.objects.get(id=id)
+            content = json.loads(request.body)
+            Salesperson.objects.filter(id=id).update(**content)
+            salesperson = Salesperson.objects.get(id=id)
+            return JsonResponse(salesperson, encoder=SalespersonEncoder, safe=False)
+        else:
+            salesperson = Salesperson.objects.get(id=id)
+            return JsonResponse(salesperson, encoder=SalespersonEncoder, safe=False)
+    except Salesperson.DoesNotExist:
+        return JsonResponse({"message": "Salesperson not found"}, status=404)
 
 #The code below is to list and create a customer. This is g2g
 @require_http_methods(["GET", "POST"])
