@@ -24,7 +24,7 @@ https://excalidraw.com/#room=0af674f1973860c91681,AXRm34SYSw8mkEGdbEmQ0Q
 - **URLs:** "/api/appointments/" and "/api/technicians/"
 - **Port:** `8080`
 
-#### 3. Sales API (!!ANDREW!!)
+#### 3. Sales API
 - **Description:**
 - **Base URL:**
 - **URLs:**
@@ -33,7 +33,7 @@ https://excalidraw.com/#room=0af674f1973860c91681,AXRm34SYSw8mkEGdbEmQ0Q
 #### 4. React Frontend
 - **Description:** The frontend application for interacting with the inventory, services, and sales.
 - **Base URL:** `http://localhost:5173`
-- **URLs:** "/manufacturers/", "/models/", "/technicians/", "/appointments/" (!!ANDREW ADD YOUR URL EXTENSTIONS HERE!!)
+- **URLs:** "/manufacturers/", "/models/", "/technicians/", "/appointments/" (ADD SALES URLS)
 - **Port:** `5173`
 
 ## Getting Started
@@ -56,14 +56,14 @@ https://excalidraw.com/#room=0af674f1973860c91681,AXRm34SYSw8mkEGdbEmQ0Q
 3. **Accessing the Application:**
     The app can be accessed at http://localhost:5173/ in the browser.
 
-## Value Object:
+## Value Object
 - AutomobileVO: A value object representing an automobile. It is being used inside both the Service and Sales Microservices. Includes "sold" and "vin".
 
 ## Service microservice
-- **Models:**
-    - **Technician:** Represents service technicians. Includes "first_name", "last_name", and "employee_id". This model links technicians to specific service appointments.
-    - **Appointment:** Tracks service appointments. Includes "date_time", "reason", "status", "vin", "customer", and "technician". This model relies on the AutomobileVO to check if a vehicle has been sold. If the vehicle has been sold, the vehicle is considered VIP status.
-    - **AutomobileVO:** Value object that mirrors data from the Inventory Microservice. Includes "sold" and "vin". This model is updated every 60 seconds by polling.
+### Models:
+- **Technician:** Represents service technicians. Includes "first_name", "last_name", and "employee_id". This model links technicians to specific service appointments.
+- **Appointment:** Tracks service appointments. Includes "date_time", "reason", "status", "vin", "customer", and "technician". This model relies on the AutomobileVO to check if a vehicle has been sold. If the vehicle has been sold, the vehicle is considered VIP status.
+- **AutomobileVO:** Value object that mirrors data from the Inventory Microservice. Includes "sold" and "vin". This model is updated every 60 seconds by polling.
 
 ### CRUD Routes (Service API):
 #### Technicians:
