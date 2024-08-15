@@ -1,4 +1,5 @@
 # CarCar
+![screenshot of home page](./README-IMG/main.png)
 CarCar is a web application focused towards automotive dealerships to manage service appointments, sales, and inventory of vehicles.
 
 ## Team: Julia / Andrew
