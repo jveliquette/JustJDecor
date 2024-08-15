@@ -52,7 +52,7 @@ https://excalidraw.com/#room=0af674f1973860c91681,AXRm34SYSw8mkEGdbEmQ0Q
     ```bash
     docker-compose build
     docker-compose up
-3. **Accessing the Application**
+3. **Accessing the Application:**
     The app can be accessed at http://localhost:5173/ in the browser.
 
 ## Value Object:
@@ -60,9 +60,9 @@ https://excalidraw.com/#room=0af674f1973860c91681,AXRm34SYSw8mkEGdbEmQ0Q
 
 ## Service microservice
 - **Models:**
-    -**Technician:** Represents service technicians. Includes "first_name", "last_name", and "employee_id". This model links technicians to specific service appointments.
-    -**Appointment:** Tracks service appointments. Includes "date_time", "reason", "status", "vin", "customer", and "technician". This model relies on the AutomobileVO to check if a vehicle has been sold. If the vehicle has been sold, the vehicle is considered VIP status.
-    -**AutomobileVO:** Value object that mirrors data from the Inventory Microservice. Includes "sold" and "vin". This model is updated every 60 seconds by polling.
+    - **Technician:** Represents service technicians. Includes "first_name", "last_name", and "employee_id". This model links technicians to specific service appointments.
+    - **Appointment:** Tracks service appointments. Includes "date_time", "reason", "status", "vin", "customer", and "technician". This model relies on the AutomobileVO to check if a vehicle has been sold. If the vehicle has been sold, the vehicle is considered VIP status.
+    - **AutomobileVO:** Value object that mirrors data from the Inventory Microservice. Includes "sold" and "vin". This model is updated every 60 seconds by polling.
 
 ### CRUD Routes (Service API):
 #### Technicians:
@@ -70,9 +70,7 @@ https://excalidraw.com/#room=0af674f1973860c91681,AXRm34SYSw8mkEGdbEmQ0Q
 - **Method:** `POST`
 - **URL:** `http://localhost:8080/api/technicians/`
 - **Description:** Creates a new technician.
-    <details>
-    <summary>Request Body and Response</summary>
-    Request Body:
+- **Request Body:**
     ```json
     {
     "first_name": "Jim",
@@ -80,7 +78,7 @@ https://excalidraw.com/#room=0af674f1973860c91681,AXRm34SYSw8mkEGdbEmQ0Q
     "employee_id": 15623
     }
     ```
-    Response:
+- **Response:**
     ```json
     {
     "id": 6,
@@ -89,15 +87,12 @@ https://excalidraw.com/#room=0af674f1973860c91681,AXRm34SYSw8mkEGdbEmQ0Q
     "employee_id": 15623
     }
     ```
-    </details>
 **Read All Technicians**
 - **Method:** `GET`
 - **URL:** `http://localhost:8080/api/technicians/`
 - **Description:** Retrieves a list of all technicians.
-    <details>
-    <summary>Request Body and Response</summary>
-    Request Body: N/A
-    Response:
+- **Request Body:** N/A
+- **Response:**
     ```json
     {
 	    "technicians": [
@@ -110,15 +105,12 @@ https://excalidraw.com/#room=0af674f1973860c91681,AXRm34SYSw8mkEGdbEmQ0Q
         ]
     }
     ```
-    </details>
 **Delete a Technician**
 - **Method:** `DELETE`
 - **URL:** `http://localhost:8080/api/technicians/:id/`
 - **Description:** Deletes a specific technician by ID.
-    <details>
-    <summary>Request Body and Response</summary>
-    Request Body: N/A
-    Response:
+- **Request Body:** N/A
+- **Response:**
     ```json
     {
 	"Deleted": true
@@ -131,9 +123,7 @@ https://excalidraw.com/#room=0af674f1973860c91681,AXRm34SYSw8mkEGdbEmQ0Q
 - **Method:** `POST`
 - **URL:** `http://localhost:8080/api/appointments/`
 - **Description:** Creates a new appointment.
-    <details>
-    <summary>Request Body and Response</summary>
-    Request Body:
+- **Request Body:**
     ```json
     {
 		"date_time": "2024-08-13T18:40:16+00:00",
@@ -144,7 +134,7 @@ https://excalidraw.com/#room=0af674f1973860c91681,AXRm34SYSw8mkEGdbEmQ0Q
 		"technician": 2
     }
     ```
-    Response:
+- **Response:**
     ```json
     {
         "date_time": "2024-08-13T18:40:16+00:00",
@@ -160,15 +150,12 @@ https://excalidraw.com/#room=0af674f1973860c91681,AXRm34SYSw8mkEGdbEmQ0Q
         }
     }
     ```
-    </details>
 **Read All Appointments**
 - **Method:** `GET`
 - **URL:** `http://localhost:8080/api/appointments/`
 - **Description:** Retrieves a list of all appointments.
-    <details>
-    <summary>Request Body and Response</summary>
-    Request Body: N/A
-    Response:
+- **Request Body:** N/A
+- **Response:**
     ```json
     {
 	    "appointments": [
@@ -189,15 +176,12 @@ https://excalidraw.com/#room=0af674f1973860c91681,AXRm34SYSw8mkEGdbEmQ0Q
         ]
     }
     ```
-    </details>
 **Update an Appointment Status to Canceled**
 - **Method:** `PUT`
 - **URL:** `http://localhost:8080/api/appointments/:id/cancel/`
 - **Description:** Updates appointment status to canceled by ID.
-    <details>
-    <summary>Request Body and Response</summary>
-    Request Body: N/A
-    Response:
+- **Request Body:** N/A
+- **Response:**
     ```json
     {
         "id": 1,
@@ -214,15 +198,12 @@ https://excalidraw.com/#room=0af674f1973860c91681,AXRm34SYSw8mkEGdbEmQ0Q
         }
     }
     ```
-    </details>
 **Update an Appointment Status to Finished**
 - **Method:** `PUT`
 - **URL:** `http://localhost:8080/api/appointments/:id/finish/`
 - **Description:** Updates appointment status to finished by ID.
-    <details>
-    <summary>Request Body and Response</summary>
-    Request Body: N/A
-    Response:
+- **Request Body:** N/A
+- **Response:**
     ```json
     {
         "id": 1,
@@ -243,16 +224,13 @@ https://excalidraw.com/#room=0af674f1973860c91681,AXRm34SYSw8mkEGdbEmQ0Q
 - **Method:** `DELETE`
 - **URL:** `http://localhost:8080/api/appointments/:id/`
 - **Description:** Deletes a specific appointment by ID.
-    <details>
-    <summary>Request Body and Response</summary>
-    Request Body: N/A
-    Response:
+- **Request Body:** N/A
+- **Response:**
     ```json
     {
 	"Deleted": true
     }
     ```
-    </details>
 
 ## Sales microservice
 
