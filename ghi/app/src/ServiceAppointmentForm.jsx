@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 function ServiceAppointmentForm() {
     const [technicians, setTechnicians] = useState([]);
-    
+
     const fetchData = async () => {
         const url = "http://localhost:8080/api/technicians/";
         const response = await fetch(url);
@@ -101,7 +101,7 @@ function ServiceAppointmentForm() {
         <div className="row">
             <div className="offset-3 col-6">
                 <div className="shadow p-4 mt-4 text-center" role="alert">
-                    <h1>Create a service appointment</h1>
+                    <h1>Create a Service Appointment</h1>
                     <form onSubmit={handleSubmit} id="create-service-appointment-form" className="text-start">
                         <div className="mb-3 mt-3">
                             <label className="form-label" htmlFor="vin">Automobile VIN</label>
