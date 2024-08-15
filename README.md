@@ -71,8 +71,8 @@ https://excalidraw.com/#room=0af674f1973860c91681,AXRm34SYSw8mkEGdbEmQ0Q
 - **URL:** `http://localhost:8080/api/technicians/`
 - **Description:** Creates a new technician.
     <details>
-    <summary>**Request Body and Response**</summary>
-    **Request Body:**
+    <summary>Request Body and Response</summary>
+    Request Body:
     ```json
     {
     "first_name": "Jim",
@@ -80,7 +80,7 @@ https://excalidraw.com/#room=0af674f1973860c91681,AXRm34SYSw8mkEGdbEmQ0Q
     "employee_id": 15623
     }
     ```
-    **Response:**
+    Response:
     ```json
     {
     "id": 6,
@@ -95,9 +95,9 @@ https://excalidraw.com/#room=0af674f1973860c91681,AXRm34SYSw8mkEGdbEmQ0Q
 - **URL:** `http://localhost:8080/api/technicians/`
 - **Description:** Retrieves a list of all technicians.
     <details>
-    <summary>**Request Body and Response**</summary>
-    **Request Body:** N/A
-    **Response:**
+    <summary>Request Body and Response</summary>
+    Request Body: N/A
+    Response:
     ```json
     {
 	    "technicians": [
@@ -116,9 +116,9 @@ https://excalidraw.com/#room=0af674f1973860c91681,AXRm34SYSw8mkEGdbEmQ0Q
 - **URL:** `http://localhost:8080/api/technicians/:id/`
 - **Description:** Deletes a specific technician by ID.
     <details>
-    <summary>**Request Body and Response**</summary>
-    **Request Body:** N/A
-    **Response:**
+    <summary>Request Body and Response</summary>
+    Request Body: N/A
+    Response:
     ```json
     {
 	"Deleted": true
@@ -132,8 +132,8 @@ https://excalidraw.com/#room=0af674f1973860c91681,AXRm34SYSw8mkEGdbEmQ0Q
 - **URL:** `http://localhost:8080/api/appointments/`
 - **Description:** Creates a new appointment.
     <details>
-    <summary>**Request Body and Response**</summary>
-    **Request Body:**
+    <summary>Request Body and Response</summary>
+    Request Body:
     ```json
     {
 		"date_time": "2024-08-13T18:40:16+00:00",
@@ -144,7 +144,7 @@ https://excalidraw.com/#room=0af674f1973860c91681,AXRm34SYSw8mkEGdbEmQ0Q
 		"technician": 2
     }
     ```
-    **Response:**
+    Response:
     ```json
     {
         "date_time": "2024-08-13T18:40:16+00:00",
@@ -166,9 +166,9 @@ https://excalidraw.com/#room=0af674f1973860c91681,AXRm34SYSw8mkEGdbEmQ0Q
 - **URL:** `http://localhost:8080/api/appointments/`
 - **Description:** Retrieves a list of all appointments.
     <details>
-    <summary>**Request Body and Response**</summary>
-    **Request Body:** N/A
-    **Response:**
+    <summary>Request Body and Response</summary>
+    Request Body: N/A
+    Response:
     ```json
     {
 	    "appointments": [
@@ -195,9 +195,9 @@ https://excalidraw.com/#room=0af674f1973860c91681,AXRm34SYSw8mkEGdbEmQ0Q
 - **URL:** `http://localhost:8080/api/appointments/:id/cancel/`
 - **Description:** Updates appointment status to canceled by ID.
     <details>
-    <summary>**Request Body and Response**</summary>
-    **Request Body:** N/A
-    **Response:**
+    <summary>Request Body and Response</summary>
+    Request Body: N/A
+    Response:
     ```json
     {
         "id": 1,
@@ -220,9 +220,9 @@ https://excalidraw.com/#room=0af674f1973860c91681,AXRm34SYSw8mkEGdbEmQ0Q
 - **URL:** `http://localhost:8080/api/appointments/:id/finish/`
 - **Description:** Updates appointment status to finished by ID.
     <details>
-    <summary>**Request Body and Response**</summary>
-    **Request Body:** N/A
-    **Response:**
+    <summary>Request Body and Response</summary>
+    Request Body: N/A
+    Response:
     ```json
     {
         "id": 1,
@@ -244,9 +244,9 @@ https://excalidraw.com/#room=0af674f1973860c91681,AXRm34SYSw8mkEGdbEmQ0Q
 - **URL:** `http://localhost:8080/api/appointments/:id/`
 - **Description:** Deletes a specific appointment by ID.
     <details>
-    <summary>**Request Body and Response**</summary>
-    **Request Body:** N/A
-    **Response:**
+    <summary>Request Body and Response</summary>
+    Request Body: N/A
+    Response:
     ```json
     {
 	"Deleted": true
