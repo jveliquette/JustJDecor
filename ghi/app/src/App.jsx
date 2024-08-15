@@ -7,21 +7,31 @@ import VehicleModelsList from "./VehicleModelsList";
 import VehicleModelForm from "./VehicleModelForm";
 import AutomobileList from "./AutomobileList";
 import AutomobileForm from "./AutomobileForm";
+import TechnicianForm from "./TechnicianForm";
+import TechnicianList from "./TechnicianList";
+import ServiceAppointmentForm from "./ServiceAppointmentForm";
+import ServiceAppointmentList from "./ServiceAppointmentList";
+import ServiceHistory from "./ServiceHistoryList";
 
 
 function App({models, manufacturers, autos}) {
 	return (
 		<>
 			<Nav />
-			<div className="container">
+			<div className="container mt-4">
 				<Routes>
 					<Route path="/" element={<MainPage />} />
-					<Route path="/manufacturers" element={<ManufacturerList manufacturers={manufacturers}/>} />
 					<Route path="/manufacturers/new" element={<ManufacturerForm />} />
-					<Route path="/models" element={<VehicleModelsList models={models}/>} />
+					<Route path="/manufacturers" element={<ManufacturerList manufacturers={manufacturers}/>} />
 					<Route path="/models/new" element={<VehicleModelForm />} />
-					<Route path="/automobiles" element={<AutomobileList autos={autos}/>} />
+					<Route path="/models" element={<VehicleModelsList models={models}/>} />
 					<Route path="/automobiles/new" element={<AutomobileForm />} />
+					<Route path="/automobiles" element={<AutomobileList autos={autos}/>} />
+					<Route path="/technicians/new" element={<TechnicianForm />} />
+					<Route path="/technicians" element={<TechnicianList />} />
+					<Route path="/appointments/new" element={<ServiceAppointmentForm />} />
+					<Route path="/appointments" element={<ServiceAppointmentList />} />
+					<Route path="/appointments/history" element={<ServiceHistory />} />
 				</Routes>
 			</div>
 		</>
