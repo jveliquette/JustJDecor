@@ -17,6 +17,8 @@ import SalespersonForm from "./SalespersonForm";
 import CustomersList from "./CustomersList";
 import CustomerForm from "./CustomerForm";
 import SalesList from "./SalesList";
+import RecordNewSaleForm from "./RecordNewSaleForm.jsx"
+import SalespersonHistory from "./SalespersonHistory";
 
 
 function App({models, manufacturers, autos}) {
@@ -42,6 +44,8 @@ function App({models, manufacturers, autos}) {
 					</Route>
 					<Route path="sales">
 						<Route index element={<SalesList />} />
+						<Route path="create" element={<RecordNewSaleForm />} />
+						<Route path="history" element={<SalespersonHistory />} />
 					</Route>
 					<Route path="/technicians/new" element={<TechnicianForm />} />
 					<Route path="/technicians" element={<TechnicianList />} />
