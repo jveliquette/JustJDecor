@@ -11,20 +11,19 @@ const initialFormState = {
 };
 
 function RecordNewSaleForm(){
-    const [automobile, setAutomobile] = useState([]);
-    const [salesperson, setSalesperson] = useState([]);
-    const [customer, setCustomer] = useState([]);
+    const [autos, setAutomobile] = useState([]);
+    const [salespeople, setSalesperson] = useState([]);
+    const [customers, setCustomer] = useState([]);
     const [formData, setFormData] = useState(initialFormState);
     const navigate = useNavigate();
 
     async function fetchAutomobileAndUpdateState() {
         const automobileUrl = "http://localhost:8100/api/automobiles/"
-        console.log(automobileUrl, "This is automobile url")
         try {
             const res = await fetch(automobileUrl);
             if (res.ok) {
-                const { automobile } = await res.json();
-                setAutomobile(automobile)
+                const { autos } = await res.json();
+                setAutomobile(autos)
             } else {
                 throw new Error('Error fetching salespeople from server')
             }
@@ -62,8 +61,8 @@ function RecordNewSaleForm(){
         try {
             const res = await fetch(customersUrl);
             if (res.ok) {
-                const { customer } = await res.json();
-                setCustomer(customer);
+                const { customers } = await res.json();
+                setCustomer(customers);
             } else {
                 throw new Error('Error fetching customer from server');
             }
@@ -77,37 +76,6 @@ function RecordNewSaleForm(){
     }, []);
 
     function handleInputChange({ target }) {
-        const { name, value } = target;
-        setFormData({
-            ...formData,
-            [name]: value,
-        });
-    }
-
-    function resetForm(e) {
-        e.preventDefault();
-        setFormData(initialFormState);
-    }
-
-    async function handleSubmit(e) {
-        e.preventDefault();
-        const salespeopleUrl = "http://localhost:8090/api/salespeople/"
-        try {
-            const res = await fetch(salespeopleUrl, {
-                method: 'POST',
-                body: JSON.stringify(formData),
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            })
-
-            if (res.ok) {
-                navigate('/salespeople/')
-            }
-        } catch (e) {
-            console.log(e);
-        }
-    }function handleInputChange({ target }) {
         const { name, value } = target;
         setFormData({
             ...formData,
@@ -140,7 +108,7 @@ function RecordNewSaleForm(){
         }
     }
 
-    const { vin:vin, first_name:firstName, last_name:lastName, price:price } = formData;
+    const { vin, salesperson, customer, price } = formData;
 
     return (
         <div className="row">
@@ -150,15 +118,36 @@ function RecordNewSaleForm(){
                     <form onSubmit={handleSubmit}>
                     <div className="mb-3">
                             <label htmlFor="vin">Automobile VIN</label>
-                            <select className="form-control" type="text" id="vin" name="vin" value={vin} onChange={handleInputChange}>
+                            <select className="form-control" required type="text" id="vin" name="vin" value={vin} onChange={handleInputChange}>
                                 <option value="">Choose an automobile VIN...</option>
-                                {automobile.map(auto => {
-                                    console.log(automobile, "This is automobile")
-                                    return (
-                                    <option key={auto.vin} value={auto.vin}>{automobile.vin}</option>
-                                )
-                            })}
+                                {autos
+                                    .filter(automobile => !automobile.sold)
+                                    .map(automobile => (
+                                    <option key={automobile.vin} value={automobile.vin}>{automobile.vin}</option>
+                                ))}
                             </select>
+                    </div>
+                    <div className="mb-3">
+                            <label htmlFor="salesperson">Salesperson</label>
+                            <select className="form-control" required type="text" id="salesperson" name="salesperson" value={salesperson} onChange={handleInputChange}>
+                                <option value="">Choose a salesperson...</option>
+                                {salespeople.map(salesperson => (
+                                    <option key={salesperson.id} value={salesperson.href}>{salesperson.first_name} {salesperson.last_name}</option>
+                                ))}
+                            </select>
+                    </div>
+                    <div className="mb-3">
+                            <label htmlFor="customer">Customer</label>
+                            <select className="form-control" required type="text" id="customer" name="customer" value={customer} onChange={handleInputChange}>
+                                <option value="">Choose a customer...</option>
+                                {customers.map(customer => (
+                                    <option key={customer.id} value={customer.href}>{customer.first_name} {customer.last_name}</option>
+                                ))}
+                            </select>
+                    </div>
+                    <div className="mb-3">
+                            <label htmlFor="price">Price</label>
+                            <input className="form-control" required type="text" id="price" name="price" value={price} onChange={handleInputChange} />
                     </div>
                         <div className="container btn-group text-center">
                             <button type="submit" className="btn btn-primary">Create</button>
