@@ -25,15 +25,15 @@ https://excalidraw.com/#room=0af674f1973860c91681,AXRm34SYSw8mkEGdbEmQ0Q
 - **Port:** `8080`
 
 #### 3. Sales API
-- **Description:**
-- **Base URL:**
-- **URLs:**
-- **Port:**
+- **Description:** Manages the sales resources.
+- **Base URL:** `http://localhost:8090/`
+- **URLs:** "/api/salespeople/", "/api/customers/", and "/api/sales/"
+- **Port:** `8090`
 
 #### 4. React Frontend
 - **Description:** The frontend application for interacting with the inventory, services, and sales.
 - **Base URL:** `http://localhost:5173`
-- **URLs:** "/manufacturers/", "/models/", "/technicians/", "/appointments/" (ADD SALES URLS)
+- **URLs:** "/manufacturers/", "/models/", "/technicians/", "/appointments/", "/salespeople/", "/customers/", and "/sales/"
 - **Port:** `5173`
 
 ## Getting Started
@@ -234,6 +234,201 @@ https://excalidraw.com/#room=0af674f1973860c91681,AXRm34SYSw8mkEGdbEmQ0Q
     ```
 
 ## Sales microservice
+### Models:
+- **Salesperson** Represents salespeople. Includes "first_name", "last_name", and "employee_id". This model links salespeople to specific sales.
+- **Customer** Represents customers. Includes "first_name", "last_name", "address", and "phone_number". This model links customers to specific sales.
+- **Sale** Represents a sale. Includes "price", "automobile", "salesperson", and "customer". This model relies on the AutomobileVO to check if a vehicle has been sold. If the vehicle has been sold, the vehicle will not be available for sale.
+- **AutomobileVO** Value object that mirrors data from the Inventory Microservice. Includes "sold" and "vin". This model is updated every 60 seconds by polling.
 
-Explain your models and integration with the inventory
-microservice, here.
+### CRUD Routes (Sales API):
+#### Salespeople
+**Create Salesperson**
+- **Method:** `POST`
+- **URL:** `http://localhost:8090/api/salespeople/`
+- **Description:** Creates a new salesperson.
+- **Request Body:**
+    ```json
+    {
+    "first_name": "Chloe",
+    "last_name": "Bennett",
+    "employee_id": "cbennett"
+    }
+    ```
+- **Response:**
+    ```json
+    {
+    "id": 4,
+    "first_name": "Chloe",
+    "last_name": "Bennett",
+    "employee_id": "cbennett"
+    }
+    ```
+**Read All Salespeople**
+- **Method:** `GET`
+- **URL** `http://localhost:8090/api/salespeople/`
+- **Description:** Retrieves a list of all salespeople.
+- **Request Body:** N/A
+- **Response:**
+    ```json
+    {
+        "salespeople": [
+            {
+                "id": 2,
+                "first_name": "Lucas",
+                "last_name": "Mercer",
+                "employee_id": "lmercer"
+            }
+        ]
+    }
+    ```
+**Delete a Salesperson**
+- **Method:** `DELETE`
+- **URL:** `http://localhost:8090/api/salespeople/:id/`
+- **Description:** Deletes a specific salesperson by ID.
+- **Request Body:** N/A
+- **Response:**
+    ```json
+    {
+	"Deleted": true
+    }
+    ```
+
+#### Customers:
+**Create Customer**
+- **Method:** `POST`
+- **URL:** `http://localhost:8090/api/customers/`
+- **Description:** Creates a new customer.
+- **Request Body:**
+    ```json
+    {
+    "first_name": "Liam",
+    "last_name": "Porter",
+    "address": "782 Maplewood Drive",
+    "phone_number": "(919) 555-8342"
+    }
+    ```
+- **Response:**
+    ```json
+    {
+    "id": 1,
+    "first_name": "Liam",
+    "last_name": "Porter",
+    "address": "782 Maplewood Drive",
+    "phone_number": "(919) 555-8342"
+    }
+    ```
+**Read All Customers**
+- **Method:** `GET`
+- **URL** `http://localhost:8090/api/customers/`
+- **Description:** Retrieves a list of all customers.
+- **Request Body:** N/A
+- **Response:**
+    ```json
+    {
+        "customers": [
+            {
+                "id": 1,
+                "first_name": "Liam",
+                "last_name": "Porter",
+                "address": "782 Maplewood Drive",
+                "phone_number": "(919) 555-8342"
+            }
+        ]
+    }
+    ```
+**Delete a Customer**
+- **Method:** `DELETE`
+- **URL:** `http://localhost:8090/api/customers/:id/`
+- **Description:** Deletes a specific customer by ID.
+- **Request Body:** N/A
+- **Response:**
+    ```json
+    {
+	"Deleted": true
+    }
+    ```
+
+#### Sales:
+**Create a Sale**
+- **Method** `POST`
+- **URL:** `http://localhost:8090/api/sales/`
+- **Description** Creates a new sale.
+- **Request Body:**
+    ```json
+    {
+	"price": 28000.00,
+	"automobile": 3,
+	"salesperson": 2,
+	"customer": 3
+    }
+    ```
+- **Response:**
+    ```json
+    {
+        "price": 28000.0,
+        "automobile": {
+            "vin": "1C3BR5FB2BN126174",
+            "sold": false
+        },
+        "salesperson": {
+            "id": 2,
+            "first_name": "Lucas",
+            "last_name": "Mercer",
+            "employee_id": "lmercer"
+        },
+        "customer": {
+            "id": 3,
+            "first_name": "Noah",
+            "last_name": "Campbell",
+            "address": "890 Brookside Avenue",
+            "phone_number": "(503) 555-6739"
+        }
+    }
+    ```
+**Read All Sales**
+- **Method:** `GET`
+- **URL:** `http://localhost:8090/api/sales/`
+- **Description:** Retrieves a list of all sales.
+- **Request Body:** N/A
+- **Response:**
+    ```json
+    {
+        "sales": [
+            {
+                "href": "/api/sales/1/",
+                "id": 1,
+                "price": 26000,
+                "automobile": {
+                    "vin": "1C3CC5FB2AN120174",
+                    "sold": false
+                },
+                "salesperson": {
+                    "href": "/api/salespeople/4/",
+                    "id": 4,
+                    "first_name": "Chloe",
+                    "last_name": "Bennett",
+                    "employee_id": "cbennett"
+                },
+                "customer": {
+                    "href": "/api/customers/1/",
+                    "id": 1,
+                    "first_name": "Liam",
+                    "last_name": "Porter",
+                    "address": "782 Maplewood Drive",
+                    "phone_number": "(919) 555-8342"
+                }
+            }
+	    ]
+    }
+
+**Delete a Sale**
+- **Method:** `DELETE`
+- **Method:** `http://localhost:8090/api/sales/:id/`
+- **Description** Deletes a specific sale by ID.
+- **Request Body:** N/A
+- **Response:**
+```json
+    {
+	"Deleted": true
+    }
+    ```
