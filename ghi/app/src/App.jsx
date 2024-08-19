@@ -20,6 +20,7 @@ import CustomerForm from "./CustomerForm";
 import SalesList from "./SalesList";
 import RecordNewSaleForm from "./RecordNewSaleForm.jsx"
 import SalespersonHistory from "./SalespersonHistory";
+import Footer from "./Footer.jsx";
 
 
 function App() {
@@ -60,9 +61,9 @@ function App() {
 	const addAuto = (newAuto) => setAutos(prev => [...prev, newAuto]);
 
 	return (
-		<>
+		<div className="d-flex flex-column min-vh-100">
 			<Nav />
-			<div className="container mt-4">
+			<div className="container mt-4 flex-grow-1">
 				<Routes>
 					<Route path="/" element={<MainPage />} />
 					<Route path="/manufacturers/new" element={<ManufacturerForm addManufacturer={addManufacturer} />} />
@@ -91,7 +92,8 @@ function App() {
 					<Route path="/appointments/history" element={<ServiceHistory />} />
 				</Routes>
 			</div>
-		</>
+			<Footer />
+		</div>
 	);
 }
 
