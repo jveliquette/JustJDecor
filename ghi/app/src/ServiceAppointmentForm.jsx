@@ -10,7 +10,6 @@ function ServiceAppointmentForm() {
         if (response.ok) {
             const data = await response.json();
             setTechnicians(data.technicians);
-            console.log(data.technicians);
         } else {
             console.error("Failed to load technicians")
         }

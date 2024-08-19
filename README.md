@@ -76,7 +76,7 @@ https://excalidraw.com/#room=0af674f1973860c91681,AXRm34SYSw8mkEGdbEmQ0Q
     {
     "first_name": "Jim",
     "last_name": "Smith",
-    "employee_id": 123
+    "employee_id": "jsmith"
     }
     ```
 - **Response:**
@@ -85,7 +85,7 @@ https://excalidraw.com/#room=0af674f1973860c91681,AXRm34SYSw8mkEGdbEmQ0Q
     "id": 1,
     "first_name": "Jim",
     "last_name": "Smith",
-    "employee_id": 123
+    "employee_id": "jsmith"
     }
     ```
 **Read All Technicians**
@@ -101,7 +101,7 @@ https://excalidraw.com/#room=0af674f1973860c91681,AXRm34SYSw8mkEGdbEmQ0Q
                 "id": 1,
                 "first_name": "Jim",
                 "last_name": "Smith",
-                "employee_id": "123"
+                "employee_id": "jsmith"
             }
         ]
     }
@@ -147,7 +147,7 @@ https://excalidraw.com/#room=0af674f1973860c91681,AXRm34SYSw8mkEGdbEmQ0Q
             "id": 1,
             "first_name": "Jim",
             "last_name": "Smith",
-            "employee_id": "123"
+            "employee_id": "jsmith"
         }
     }
     ```
@@ -171,7 +171,7 @@ https://excalidraw.com/#room=0af674f1973860c91681,AXRm34SYSw8mkEGdbEmQ0Q
                     "id": 1,
                     "first_name": "Jim",
                     "last_name": "Smith",
-                    "employee_id": "123"
+                    "employee_id": "jsmith"
                 }
             }
         ]
@@ -195,7 +195,7 @@ https://excalidraw.com/#room=0af674f1973860c91681,AXRm34SYSw8mkEGdbEmQ0Q
             "id": 1,
             "first_name": "Jim",
             "last_name": "Smith",
-            "employee_id": "123"
+            "employee_id": "jsmith"
         }
     }
     ```
@@ -217,7 +217,7 @@ https://excalidraw.com/#room=0af674f1973860c91681,AXRm34SYSw8mkEGdbEmQ0Q
             "id": 1,
             "first_name": "Jim",
             "last_name": "Smith",
-            "employee_id": "123"
+            "employee_id": "jsmith"
         }
     }
     ```

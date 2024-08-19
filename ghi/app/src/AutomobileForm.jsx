@@ -10,7 +10,6 @@ function AutomobileForm({addAuto}) {
         if (response.ok) {
             const data = await response.json();
             setModels(data.models);
-            console.log(data.models)
         } else {
             console.error("Failed to load models")
         }

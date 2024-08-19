@@ -10,7 +10,6 @@ function VehicleModelForm({addModel}) {
         if (response.ok) {
             const data = await response.json();
             setManufacturers(data.manufacturers);
-            console.log(data.manufacturers)
         } else {
             console.error("Failed to load manufacturers")
         }
