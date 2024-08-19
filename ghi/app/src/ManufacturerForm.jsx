@@ -3,6 +3,8 @@ import { useState } from "react";
 function ManufacturerForm({addManufacturer}) {
     const [manufacturer, setManufacturer] = useState('');
     const [success, setSuccess] = useState(false);
+    const [error, setError] = useState(null);
+
     const handleManufacturerChange = (event) => {
         const value = event.target.value;
         setManufacturer(value);
@@ -28,13 +30,23 @@ function ManufacturerForm({addManufacturer}) {
                 console.log(newManufacturer);
                 addManufacturer(newManufacturer);
                 setSuccess(true);
+                setError(null);
                 // reset form
                 setManufacturer('')
             } else {
-                console.error(`Error: ${response.status} ${response.statusText}`);
+                const errorData = await response.json();
+                if (response.status === 400) {
+                    setError("Manufacturer already exists.");
+                } else if (errorData.detail) {
+                    setError(errorData.detail)
+                } else {
+                    setError(`Error: ${response.status} ${response.statusText}`);
+                }
+                setSuccess(false);
             }
-        } catch {
+        } catch (e) {
             console.error('Fetch error:', e);
+            setError("Unexpected error.")
         }
     };
 
@@ -45,6 +57,9 @@ function ManufacturerForm({addManufacturer}) {
                     <h1>Create a Manufacturer</h1>
                     {success && (
                         <div className="alert alert-success">Manufacturer was added successfully!</div>
+                    )}
+                    {error && (
+                        <div className="alert alert-danger">{error}</div>
                     )}
                     <form onSubmit={handleSubmit} id="create-manufacturer-form">
                         <div className="form-floating mb-3">

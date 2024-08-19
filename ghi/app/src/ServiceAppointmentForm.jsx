@@ -58,7 +58,8 @@ function ServiceAppointmentForm() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const dateTime = `${date}T${time}`
+        const dateTime = `${date}T${time}:00`;
+        console.log(dateTime);
         const data = {};
         data.vin = vin;
         data.customer = customerName;
