@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function ServiceHistory() {
     const [appointments, setAppointments] = useState([]);
     const [automobiles, setAutomobiles] = useState([]);
     const [filteredAppointments, setFilteredAppointments] = useState([]);
+    const navigate = useNavigate();
 
     const fetchAppointments = async () => {
         const url = "http://localhost:8080/api/appointments/";
@@ -57,18 +59,29 @@ function ServiceHistory() {
 
     const handleVinSearch = (event) => {
         event.preventDefault();
+        const searchTerm = vinSearch.trim().toLowerCase();
         if (vinSearch.trim() === '') {
             setFilteredAppointments(appointments);
         } else {
-            setFilteredAppointments(appointments.filter(appointment => appointment.vin.includes(vinSearch)));
+            setFilteredAppointments(appointments.filter(appointment => appointment.vin.toLowerCase().includes(searchTerm)));
         }
+    }
 
+    const handleCreateAppointment = () => {
+        navigate('/appointments/new');
     }
 
     return (
-        <>
+        <div>
             <h1>Service History</h1>
-            <form onSubmit={handleVinSearch} className="d-flex mb-4">
+            {appointments.length === 0 ? (
+                <div>
+                    <p>No service history available.</p>
+                    <button onClick={handleCreateAppointment} className="btn btn-dark">Create Service Appointment</button>
+                </div>
+            ) : (
+            <div>
+                <form onSubmit={handleVinSearch} className="d-flex mb-4">
                 <div className="form-floating flex-grow-1 me-2">
                     <input onChange={handleVinChange} value={vinSearch} placeholder="Search by VIN..." type="text" name="search" id="search" className="form-control"/>
                     <label htmlFor="search">Search by VIN...</label>
@@ -107,7 +120,10 @@ function ServiceHistory() {
                     })}
                 </tbody>
             </table>
-        </>
+            </div>
+            )}
+
+        </div>
     )
 }
 export default ServiceHistory;

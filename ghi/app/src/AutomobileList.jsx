@@ -1,6 +1,14 @@
+import { useNavigate } from "react-router-dom";
+
 function AutomobileList({autos}) {
+    const navigate = useNavigate();
+
+    const handleCreateAutomobile = () => {
+        navigate('/automobiles/new');
+    }
+
     return (
-        <>
+        <div>
             <h1>Automobiles</h1>
             {autos && autos.length > 0 ? (
             <table className="table table-striped">
@@ -26,9 +34,12 @@ function AutomobileList({autos}) {
                 </tbody>
             </table>
             ) : (
-                <p>No automobiles available.</p>
+                <div>
+                    <p>No automobiles available.</p>
+                    <button onClick={handleCreateAutomobile} className="btn btn-dark">Create Automobile</button>
+                </div>
             )}
-        </>
+        </div>
     )
 }
 export default AutomobileList;

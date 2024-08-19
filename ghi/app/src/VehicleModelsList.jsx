@@ -1,4 +1,11 @@
+import { useNavigate } from "react-router-dom";
+
 function VehicleModelsList({models}) {
+    const navigate = useNavigate();
+
+    const handleCreateModel = () => {
+        navigate('/models/new');
+    }
 
     return (
         <>
@@ -24,7 +31,10 @@ function VehicleModelsList({models}) {
                 </tbody>
             </table>
             ) : (
-                <p>No models available.</p>
+                <div>
+                    <p>No models available.</p>
+                    <button onClick={handleCreateModel} className="btn btn-dark">Create Model</button>
+                </div>
             )}
         </>
     )

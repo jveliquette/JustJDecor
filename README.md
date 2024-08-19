@@ -76,16 +76,16 @@ https://excalidraw.com/#room=0af674f1973860c91681,AXRm34SYSw8mkEGdbEmQ0Q
     {
     "first_name": "Jim",
     "last_name": "Smith",
-    "employee_id": 15623
+    "employee_id": 123
     }
     ```
 - **Response:**
     ```json
     {
-    "id": 6,
+    "id": 1,
     "first_name": "Jim",
     "last_name": "Smith",
-    "employee_id": 15623
+    "employee_id": 123
     }
     ```
 **Read All Technicians**
@@ -98,10 +98,10 @@ https://excalidraw.com/#room=0af674f1973860c91681,AXRm34SYSw8mkEGdbEmQ0Q
     {
 	    "technicians": [
             {
-                "id": 6,
+                "id": 1,
                 "first_name": "Jim",
                 "last_name": "Smith",
-                "employee_id": "15623"
+                "employee_id": "123"
             }
         ]
     }
@@ -132,7 +132,7 @@ https://excalidraw.com/#room=0af674f1973860c91681,AXRm34SYSw8mkEGdbEmQ0Q
 		"status": "scheduled",
 		"vin": "FYGWYFEY425",
 		"customer": "Bobby Brown",
-		"technician": 2
+		"technician": 1
     }
     ```
 - **Response:**
@@ -144,7 +144,7 @@ https://excalidraw.com/#room=0af674f1973860c91681,AXRm34SYSw8mkEGdbEmQ0Q
         "vin": "FYGWYFEY425",
         "customer": "Bobby Brown",
         "technician": {
-            "id": 2,
+            "id": 1,
             "first_name": "Jim",
             "last_name": "Smith",
             "employee_id": "123"
@@ -168,7 +168,7 @@ https://excalidraw.com/#room=0af674f1973860c91681,AXRm34SYSw8mkEGdbEmQ0Q
                 "vin": "FYGWYFEY425",
                 "customer": "Bobby Brown",
                 "technician": {
-                    "id": 2,
+                    "id": 1,
                     "first_name": "Jim",
                     "last_name": "Smith",
                     "employee_id": "123"
@@ -192,7 +192,7 @@ https://excalidraw.com/#room=0af674f1973860c91681,AXRm34SYSw8mkEGdbEmQ0Q
         "vin": "FYGWYFEY425",
         "customer": "Bobby Brown",
         "technician": {
-            "id": 2,
+            "id": 1,
             "first_name": "Jim",
             "last_name": "Smith",
             "employee_id": "123"
@@ -214,7 +214,7 @@ https://excalidraw.com/#room=0af674f1973860c91681,AXRm34SYSw8mkEGdbEmQ0Q
         "vin": "FYGWYFEY425",
         "customer": "Bobby Brown",
         "technician": {
-            "id": 2,
+            "id": 1,
             "first_name": "Jim",
             "last_name": "Smith",
             "employee_id": "123"
