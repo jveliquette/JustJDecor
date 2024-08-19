@@ -13,6 +13,13 @@ import ServiceAppointmentForm from "./ServiceAppointmentForm";
 import ServiceAppointmentList from "./ServiceAppointmentList";
 import ServiceHistory from "./ServiceHistoryList";
 import { useState, useEffect } from "react";
+import SalespeopleList from "./SalespeopleList";
+import SalespersonForm from "./SalespersonForm";
+import CustomersList from "./CustomersList";
+import CustomerForm from "./CustomerForm";
+import SalesList from "./SalesList";
+import RecordNewSaleForm from "./RecordNewSaleForm.jsx"
+import SalespersonHistory from "./SalespersonHistory";
 
 
 function App() {
@@ -64,6 +71,19 @@ function App() {
 					<Route path="/models" element={<VehicleModelsList models={models}/>} />
 					<Route path="/automobiles/new" element={<AutomobileForm addAuto={addAuto} />} />
 					<Route path="/automobiles" element={<AutomobileList autos={autos}/>} />
+					<Route path="salespeople">
+						<Route index element={<SalespeopleList />} />
+						<Route path="create" element={<SalespersonForm />} />
+					</Route>
+					<Route path="customers">
+						<Route index element={<CustomersList />} />
+						<Route path="create" element={<CustomerForm />} />
+					</Route>
+					<Route path="sales">
+						<Route index element={<SalesList />} />
+						<Route path="create" element={<RecordNewSaleForm />} />
+						<Route path="history" element={<SalespersonHistory />} />
+					</Route>
 					<Route path="/technicians/new" element={<TechnicianForm />} />
 					<Route path="/technicians" element={<TechnicianList />} />
 					<Route path="/appointments/new" element={<ServiceAppointmentForm />} />
