@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 function VehicleModelForm() {
     const [manufacturers, setManufacturers] = useState([]);
+    const [success, setSuccess] = useState(false);
 
     const fetchData = async () => {
         const url = "http://localhost:8100/api/manufacturers/";
@@ -56,6 +57,7 @@ function VehicleModelForm() {
             if (response.ok) {
                 const newModel = await response.json();
                 console.log(newModel);
+                setSuccess(true)
                 resetForm();
             } else {
                 console.error(`Error: ${response.status} ${response.statusText}`);
@@ -76,6 +78,9 @@ function VehicleModelForm() {
             <div className="offset-3 col-6">
                 <div className="shadow p-4 mt-4 text-center" role="alert">
                     <h1>Create a Vehicle Model</h1>
+                    {success && (
+                        <div className="alert alert-success">Model was added successfully!</div>
+                    )}
                     <form onSubmit={handleSubmit} id="create-model-form">
                         <div className="form-floating mb-3">
                             <input onChange={handleNameChange} value={name} placeholder="Model" required type="text" name="name" id="name" className="form-control" />

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 function ServiceAppointmentForm() {
     const [technicians, setTechnicians] = useState([]);
+    const [success, setSuccess] = useState(false);
 
     const fetchData = async () => {
         const url = "http://localhost:8080/api/technicians/";
@@ -78,6 +79,7 @@ function ServiceAppointmentForm() {
             if (response.ok) {
                 const newServiceAppointment = await response.json();
                 console.log(newServiceAppointment);
+                setSuccess(true);
                 resetForm();
             } else {
                 console.error(`Error: ${response.status} ${response.statusText}`);
@@ -102,6 +104,9 @@ function ServiceAppointmentForm() {
             <div className="offset-3 col-6">
                 <div className="shadow p-4 mt-4 text-center" role="alert">
                     <h1>Create a Service Appointment</h1>
+                    {success && (
+                        <div className="alert alert-success">Appointment was added successfully!</div>
+                    )}
                     <form onSubmit={handleSubmit} id="create-service-appointment-form" className="text-start">
                         <div className="mb-3 mt-3">
                             <label className="form-label" htmlFor="vin">Automobile VIN</label>

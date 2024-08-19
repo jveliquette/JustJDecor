@@ -2,6 +2,7 @@ import { useState } from "react";
 
 function ManufacturerForm() {
     const [manufacturer, setManufacturer] = useState('');
+    const [success, setSuccess] = useState(false);
     const handleManufacturerChange = (event) => {
         const value = event.target.value;
         setManufacturer(value);
@@ -25,6 +26,7 @@ function ManufacturerForm() {
             if (response.ok) {
                 const newManufacturer = await response.json();
                 console.log(newManufacturer);
+                setSuccess(true);
                 // reset form
                 setManufacturer('')
             } else {
@@ -40,6 +42,9 @@ function ManufacturerForm() {
             <div className="offset-3 col-6">
                 <div className="shadow p-4 mt-4 text-center" role="alert">
                     <h1>Create a Manufacturer</h1>
+                    {success && (
+                        <div className="alert alert-success">Manufacturer was added successfully!</div>
+                    )}
                     <form onSubmit={handleSubmit} id="create-manufacturer-form">
                         <div className="form-floating mb-3">
                             <input onChange={handleManufacturerChange} value={manufacturer} placeholder="Manufacturer" required type="text" name="manufacturer" id="manufacturer" className="form-control" />

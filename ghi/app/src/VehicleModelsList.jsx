@@ -17,7 +17,7 @@ function VehicleModelsList({models}) {
                         <tr key={model.id}>
                             <td>{model.name}</td>
                             <td>{model.manufacturer.name}</td>
-                            <td><img src={model.picture_url} alt={model.name} /></td>
+                            <td><img src={model.picture_url} alt={model.name} style={{maxHeight: "200px"}}/></td>
                         </tr>
                     ))}
 

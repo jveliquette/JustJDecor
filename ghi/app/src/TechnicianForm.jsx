@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 function TechnicianForm() {
+    const [success, setSuccess] = useState(false);
     const [firstName, setFirstName] = useState('');
     const handleFirstNameChange = (event) => {
         const value = event.target.value;
@@ -38,6 +39,7 @@ function TechnicianForm() {
             if (response.ok) {
                 const newTechnician = await response.json();
                 console.log(newTechnician);
+                setSuccess(true)
                 resetForm();
             } else {
                 console.error(`Error: ${response.status} ${response.statusText}`);
@@ -58,6 +60,9 @@ function TechnicianForm() {
             <div className="offset-3 col-6">
                 <div className="shadow p-4 mt-4 text-center" role="alert">
                     <h1>Add a Technician</h1>
+                    {success && (
+                        <div className="alert alert-success">Technician was added successfully!</div>
+                    )}
                     <form onSubmit={handleSubmit} id="create-technician-form">
                         <div className="form-floating mb-3">
                             <input onChange={handleFirstNameChange} value={firstName} placeholder="First Name" required type="text" name="first_name" id="first_name" className="form-control" />
