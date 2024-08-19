@@ -87,7 +87,3 @@ function SalespersonHistory() {
 }
 
 export default SalespersonHistory;
-
-
-//Need a drop down menu of salepeople
-//Need a table with Salesperson (Salesperson Model:first and last), Customer (Customer Model: first and last), VIN (AutomobileVO model), and Price (Sale Model)

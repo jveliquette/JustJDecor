@@ -118,10 +118,6 @@ function RecordNewSaleForm(){
     }
 
     const { automobile, salesperson, customer, price } = formData;
-    console.log(automobile, "This is vin")
-    console.log(salesperson, "This is salesperson")
-    console.log(customer, "This is customer")
-    console.log(price, "This is price")
 
     return (
         <div className="row">

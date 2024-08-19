@@ -52,7 +52,6 @@ class SaleEncoder(ModelEncoder):
     }
 
 # Create your views here.
-#This function is fully operational. It handles the list of salespeople and creating salesperson
 @require_http_methods(["GET", "POST"])
 def list_salespeople(request):
     if request.method == "GET":
@@ -70,7 +69,7 @@ def list_salespeople(request):
             safe=False,
         )
 
-#This function is fully operational. It handles requests for salesperson
+
 @require_http_methods(["DELETE", "PUT", "GET"])
 def show_salesperson(request, id):
     try:
@@ -89,7 +88,7 @@ def show_salesperson(request, id):
     except Salesperson.DoesNotExist:
         return JsonResponse({"message": "Salesperson not found"}, status=404)
 
-#This function is fully operational. It handles the list of customers and creating customer
+
 @require_http_methods(["GET", "POST"])
 def list_customers(request):
     if request.method == "GET":
@@ -107,7 +106,6 @@ def list_customers(request):
             safe=False,
         )
 
-#This function is fully operational. It handles requests for customer
 @require_http_methods(["DELETE", "PUT", "GET"])
 def show_customer(request, id):
     try:
@@ -126,7 +124,7 @@ def show_customer(request, id):
     except Customer.DoesNotExist:
         return JsonResponse({"message": "Customer not found"}, status=404)
 
-#This is get/create for Sales it works
+
 @require_http_methods(["GET", "POST"])
 def list_sales(request):
     if request.method == "GET":
@@ -156,7 +154,7 @@ def list_sales(request):
         else:
                 return JsonResponse({"message": "Incorrectly formatted request body. Request body must be of type: application/json"}, status=400)
 
-#This is the get/update/delete for sale is good to go.
+
 @require_http_methods(["DELETE", "PUT", "GET"])
 def show_sale(request, id):
     try:
