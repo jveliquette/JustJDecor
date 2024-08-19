@@ -4,7 +4,7 @@ import App from "./App.jsx";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter } from "react-router-dom";
-import loadData from "./LoadData.jsx"
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -14,5 +14,3 @@ root.render(
 		</BrowserRouter>
 	</React.StrictMode>
 );
-
-loadData(root);
