@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function ServiceAppointmentList() {
     const [appointments, setAppointments] = useState([]);
-
     const [automobiles, setAutomobiles] = useState([]);
+    const navigate = useNavigate();
 
     const fetchAppointments = async () => {
         const url = "http://localhost:8080/api/appointments/";
@@ -68,10 +69,20 @@ function ServiceAppointmentList() {
         return `${formattedDate}, ${formattedTime}`;
     };
 
+    const handleCreateAppointment = () => {
+        navigate('/appointments/new');
+    }
+
     return (
-        <>
-            <h1>Service Appointments</h1>
-            <table className="table table-striped">
+        <div>
+            <h1>Scheduled Service Appointments</h1>
+            {appointments.length === 0 ? (
+                <div>
+                    <p>No appointments available.</p>
+                    <button onClick={handleCreateAppointment} className="btn btn-dark">Create Service Appointment</button>
+                </div>
+            ) : (
+                <table className="table table-striped">
                 <thead>
                     <tr>
                         <th>VIN</th>
@@ -112,7 +123,8 @@ function ServiceAppointmentList() {
                     )}
                 </tbody>
             </table>
-        </>
+            )}
+        </div>
     )
 }
 export default ServiceAppointmentList;

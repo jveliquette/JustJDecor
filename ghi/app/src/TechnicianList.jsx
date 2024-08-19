@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function TechnicianList() {
     const [technicians, setTechnicians] = useState([]);
+    const navigate = useNavigate();
 
     const fetchTechnicians = async () => {
         const url = "http://localhost:8080/api/technicians/";
@@ -22,9 +24,19 @@ function TechnicianList() {
         fetchTechnicians();
     }, []);
 
+    const handleCreateTechnician = () => {
+        navigate('/technicians/new');
+    }
+
     return (
-        <>
+        <div>
             <h1>Technicians</h1>
+            {technicians.length === 0 ? (
+                <div>
+                    <p>No technicians available.</p>
+                    <button onClick={handleCreateTechnician} className="btn btn-dark">Add Technician</button>
+                </div>
+            ) : (
             <table className="table table-striped">
                 <thead>
                     <tr>
@@ -43,7 +55,8 @@ function TechnicianList() {
                     ))}
                 </tbody>
             </table>
-        </>
+            )}
+        </div>
     )
 }
 export default TechnicianList;
