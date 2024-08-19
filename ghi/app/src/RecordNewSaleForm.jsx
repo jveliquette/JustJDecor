@@ -90,6 +90,7 @@ function RecordNewSaleForm(){
         e.preventDefault();
         const salesUrl = "http://localhost:8090/api/sales/"
         try {
+            console.log(formData, "This is form data")
             const res = await fetch(salesUrl, {
                 method: 'POST',
                 body: JSON.stringify(formData),
@@ -99,7 +100,9 @@ function RecordNewSaleForm(){
             })
 
             if (res.ok) {
-                const updateAutoUrl = `http://localhost:8100/api/automobiles/${formData.automobile.vin}/`
+                const selectedAuto = autos.find(auto => auto.id === parseInt(formData.automobile));
+                const vin = selectedAuto.vin;
+                const updateAutoUrl = `http://localhost:8100/api/automobiles/${vin}/`;
                 await fetch(updateAutoUrl, {
                     method: 'PUT',
                     body: JSON.stringify({ sold: true}),
