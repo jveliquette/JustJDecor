@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function ManufacturerForm() {
+function ManufacturerForm({addManufacturer}) {
     const [manufacturer, setManufacturer] = useState('');
     const [success, setSuccess] = useState(false);
     const handleManufacturerChange = (event) => {
@@ -26,6 +26,7 @@ function ManufacturerForm() {
             if (response.ok) {
                 const newManufacturer = await response.json();
                 console.log(newManufacturer);
+                addManufacturer(newManufacturer);
                 setSuccess(true);
                 // reset form
                 setManufacturer('')

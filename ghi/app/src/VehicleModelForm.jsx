@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-function VehicleModelForm() {
+function VehicleModelForm({addModel}) {
     const [manufacturers, setManufacturers] = useState([]);
     const [success, setSuccess] = useState(false);
 
@@ -57,6 +57,7 @@ function VehicleModelForm() {
             if (response.ok) {
                 const newModel = await response.json();
                 console.log(newModel);
+                addModel(newModel);
                 setSuccess(true)
                 resetForm();
             } else {
