@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 
-function AutomobileForm() {
+function AutomobileForm({addAuto}) {
     const [models, setModels] = useState([]);
+    const [success, setSuccess] = useState(false);
 
     const fetchData = async () => {
         const url = "http://localhost:8100/api/models/";
@@ -65,6 +66,8 @@ function AutomobileForm() {
             if (response.ok) {
                 const newAuto = await response.json();
                 console.log(newAuto);
+                addAuto(newAuto);
+                setSuccess(true)
                 resetForm();
             } else {
                 console.error(`Error: ${response.status} ${response.statusText}`);
@@ -86,6 +89,9 @@ function AutomobileForm() {
             <div className="offset-3 col-6">
                 <div className="shadow p-4 mt-4 text-center" role="alert">
                     <h1>Add an Automobile to Inventory</h1>
+                    {success && (
+                        <div className="alert alert-success">Automobile was added successfully!</div>
+                    )}
                     <form onSubmit={handleSubmit} id="create-auto-form">
                         <div className="form-floating mb-3">
                             <input onChange={handleColorChange} value={color} placeholder="Color" required type="text" name="color" id="color" className="form-control" />

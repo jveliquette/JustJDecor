@@ -55,15 +55,18 @@ function ServiceAppointmentList() {
         }
     };
 
-    const formattedDate = (dateString) => {
-        const date = new Date(dateString);
-        return date.toLocaleDateString();
-    };
+    const formatDateTime = (dateTimeString) => {
+        const date = new Date(dateTimeString);
+        const formattedDate = date.toLocaleDateString('en-US', {
+            year: 'numeric', month: 'numeric', day: 'numeric'
+        });
 
-    const formattedTime = (dateString) => {
-        const date = new Date(dateString);
-        return date.toLocaleTimeString([], {hour: "2-digit", minute: "2-digit"})
-    }
+        const formattedTime = date.toLocaleTimeString('en-US', {
+            hour: '2-digit', minute: '2-digit', hour12: true, timeZone: 'UTC'
+        });
+
+        return `${formattedDate}, ${formattedTime}`;
+    };
 
     return (
         <>
@@ -82,13 +85,16 @@ function ServiceAppointmentList() {
                     </tr>
                 </thead>
                 <tbody>
-                    {appointments.map(appointment => (
-                        <tr key={appointment.id}>
+                    {appointments.map(appointment => {
+                        const formattedDateTime = formatDateTime(appointment.date_time);
+                        const [date, time] = formattedDateTime.split(', ');
+                        return (
+                            <tr key={appointment.id}>
                             <td>{appointment.vin}</td>
                             <td>{isVip(appointment.vin) ? "Yes" : "No"}</td>
                             <td>{appointment.customer}</td>
-                            <td>{formattedDate(appointment.date_time)}</td>
-                            <td>{formattedTime(appointment.date_time)}</td>
+                            <td>{date}</td>
+                            <td>{time}</td>
                             <td>{appointment.technician.first_name} {appointment.technician.last_name}</td>
                             <td>{appointment.reason}</td>
                             <td>
@@ -100,7 +106,10 @@ function ServiceAppointmentList() {
                                 </button>
                             </td>
                         </tr>
-                    ))}
+                        )
+                    }
+
+                    )}
                 </tbody>
             </table>
         </>
