@@ -53,7 +53,7 @@ function SalespersonHistory() {
         <div className="container">
             <h1 className="text-left">Salesperson History</h1>
             <div className="row" style={{justifyContent: 'space-between'}}>
-            <select class="form-select" aria-label="Salesperson History" onChange={handleSalespersonChange} value={selectedSalesperson}>
+            <select className="form-select" aria-label="Salesperson History" onChange={handleSalespersonChange} value={selectedSalesperson}>
                 <option value="">Select a salesperson</option>
                 {salespeople.map(salesperson => (
                         <option key={salesperson.id} value={salesperson.href}>{salesperson.first_name} {salesperson.last_name}</option>
