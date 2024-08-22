@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404
 from django.views.decorators.http import require_http_methods
 import json
 import requests
-from .acls import search_inspiration
+from .acls import search_inspiration, main_page
 from .models import Room, Project, WishlistItem, Pin, UserProfile
 from .encoders import RoomEncoder, ProjectEncoder, WishlistItemEncoder, PinEncoder, UserProfileEncoder
 
@@ -185,6 +185,20 @@ def api_search_inspiration(request):
         return JsonResponse({"error": "Query parameter is required."}, status=400)
     try:
         data = search_inspiration(query)
+        return JsonResponse(
+            data,
+            safe=False
+        )
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching from Pexels API: {e}")
+        return JsonResponse({"error": "Failed to fetch inspiration from Pexels."}, status=500)
+
+
+@require_http_methods(["GET"])
+def api_main_photos(request):
+    query = "home decor"
+    try:
+        data = main_page(query)
         return JsonResponse(
             data,
             safe=False

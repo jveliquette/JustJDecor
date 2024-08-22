@@ -3,7 +3,7 @@ from .views import (
     api_rooms, api_room, api_projects, api_project,
     api_wishlist_items, api_wishlist_item, api_pins,
     api_pin, api_user_profiles, api_user_profile,
-    api_search_inspiration,
+    api_search_inspiration, api_main_photos,
 )
 
 urlpatterns = [
@@ -23,4 +23,5 @@ urlpatterns = [
     path('user-profiles/<int:id>/', api_user_profile, name='api_user_profile'),
 
     path('search-inspiration/', api_search_inspiration, name='api_search_inspiration'),
+    path('main-photos/', api_main_photos, name='api_main_photos')
 ]

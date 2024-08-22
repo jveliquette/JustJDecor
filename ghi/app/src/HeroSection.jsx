@@ -1,31 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
-import axios from 'axios'
 
 function HeroSection() {
     const [photos, setPhotos] = useState([]);
 
-    useEffect(() => {
-        const fetchPhotos = async () => {
-          try {
-            const response = await axios.get('https://api.pexels.com/v1/search', {
-              headers: {
-                Authorization: import.meta.env.VITE_PEXELS_API_KEY,
-              },
-              params: {
-                query: 'home decor',
-                per_page: 10,
-              },
-            });
+  const fetchPhotos = async () => {
+    try {
+      const response = await fetch('http://localhost:8100/api/main-photos/');
+      if (response.ok) {
+        const data = await response.json();
+        setPhotos(data.photos);
+      } else {
+        console.error("Failed to fetch images from Pexels");
+      }
+    } catch (error) {
+      console.error("An error occurred while fetching photos:", error);
+    }
+  };
 
-            setPhotos(response.data.photos);
-          } catch (error) {
-                console.error('Error fetching photos from Pexels API', error);
-          }
-        };
-
-        fetchPhotos();
-      }, []);
+  useEffect(() => {
+    fetchPhotos();
+  }, []);
 
 
   return (
@@ -36,13 +31,13 @@ function HeroSection() {
             <h1 className="display-4">Welcome to JustJDecor</h1>
             <p className="lead">JustJDecor is your ultimate home decor and design tool. Organize your ideas, create beautiful rooms, and get inspired by the latest trends in home decor.</p>
           </div>
-          <Carousel>
-            {photos.map((photo) => (
-              <Carousel.Item key={photo.id}>
-                <img className="d-block w-100" src={photo.src.landscape} alt={photo.alt}/>
-              </Carousel.Item>
-            ))}
-          </Carousel>
+            <Carousel>
+              {photos.map((photo) => (
+                <Carousel.Item key={photo.id}>
+                    <img className="d-block w-100 img-fluid" src={photo.picture_url} alt={photo.alt || 'Image'} style={{ height: '500px', objectFit: 'cover' }}/>
+                </Carousel.Item>
+              ))}
+            </Carousel>
         </div>
       </div>
     </div>

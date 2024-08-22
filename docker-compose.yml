@@ -19,7 +19,7 @@ services:
             - beta-data:/var/lib/postgresql/data
             - ./db:/docker-entrypoint-initdb.d
         environment:
-            - POSTGRES_MULTIPLE_DATABASES=design,sales,service
+            - POSTGRES_MULTIPLE_DATABASES=design
             - POSTGRES_PASSWORD=test-databases
         ports:
             - 15432:5432

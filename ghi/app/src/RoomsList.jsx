@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import AddRoomForm from "./AddRoomForm";
 import DeleteConfirmationModal from "./DeleteConfirmationModal";
+import { Link } from "react-router-dom";
 
 function RoomsList() {
     const [rooms, setRooms] = useState([]);
@@ -88,12 +89,12 @@ function RoomsList() {
                 {error && <div className="alert alert-danger">Failed to load rooms.</div>}
                 {rooms.map(room => (
                     <div className="col-md-4 mb-4" key={room.id}>
-                        <div className="expand-card card">
-                            <div className="card-body">
-                                <h5 className="card-title">{room.name}</h5>
+                        <div className="expand-card card bg-dark">
+                            <div className="card-body mb-5">
+                                <h5 className="card-title text-light">{room.name}</h5>
                                 {/* <p className="card-text">{room.image_url}</p> */}
-                                <a href={`/rooms/${room.id}`} className="btn btn-secondary">View Room</a>
-                                <button className="btn btn-danger ms-2" onClick={() => handleShowDeleteModal(room)}><i class="fa-solid fa-trash"></i></button>
+                                <Link to={`/rooms/${room.id}`} className="btn btn-secondary">View Room</Link>
+                                <button className="btn btn-light ms-2" onClick={() => handleShowDeleteModal(room)}>Delete <i className="fa-solid fa-trash"></i></button>
                             </div>
                         </div>
                     </div>
