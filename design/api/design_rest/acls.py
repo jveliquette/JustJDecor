@@ -8,7 +8,7 @@ def search_inspiration(query):
     headers = {"Authorization": PEXELS_API_KEY}
     params = {
         "query": query,
-        "per_page": 10,
+        "per_page": 50,
     }
     url = "https://api.pexels.com/v1/search"
     response = requests.get(url, params=params, headers=headers)

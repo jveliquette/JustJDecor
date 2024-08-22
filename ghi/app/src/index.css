@@ -5,6 +5,8 @@ body {
 		"Helvetica Neue", sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	background-color: #333A40 !important;
+	color: white !important;
 }
 
 code {
@@ -13,15 +15,86 @@ code {
 }
 
 .footer-title {
-text-decoration: underline;
-text-underline-offset: 0.5rem;
+    text-decoration: underline;
+    text-underline-offset: 0.5rem;
 }
 
 .footer {
-    background-color: #333;
     color: white;
     text-align: center;
     padding: 10px 0;
     width: 100%;
     margin-top: auto;
+}
+
+.hero-section {
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #2222225b;
+    color: white;
+    border-radius: 2rem;
+}
+
+.scroll {
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.scroll-h2 {
+    margin-bottom: 40px;
+}
+
+.scroll-p {
+    margin-bottom: 50px;
+}
+
+
+.steps-icon {
+	color: rgb(161, 161, 161);
+	padding-right: 1rem;
+}
+
+span {
+	padding-right: 2rem;
+}
+
+.container {
+    margin-top: 20px;
+}
+
+.card {
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.expand-card:hover {
+    transform: scale(1.05);
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.btn-success {
+    display: block;
+    margin: 0 auto;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Darkens the background */
+    z-index: 1040; /* Ensure it's behind the modal */
+    display: none;
+}
+
+.modal-overlay.show {
+    display: block;
 }

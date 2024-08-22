@@ -4,6 +4,7 @@ from .models import Room, Project, WishlistItem, Pin, UserProfile
 class RoomEncoder(ModelEncoder):
     model = Room
     properties = [
+        "id",
         "name",
         "image_url",
     ]
@@ -11,6 +12,7 @@ class RoomEncoder(ModelEncoder):
 class ProjectEncoder(ModelEncoder):
     model = Project
     properties = [
+        "id",
         "name",
         "description",
         "room",
@@ -23,6 +25,7 @@ class ProjectEncoder(ModelEncoder):
 class WishlistItemEncoder(ModelEncoder):
     model = WishlistItem
     properties = [
+        "id",
         "title",
         "image_url",
         "purchase_link",
@@ -40,6 +43,7 @@ class WishlistItemEncoder(ModelEncoder):
 class PinEncoder(ModelEncoder):
     model = Pin
     properties = [
+        "id",
         "title",
         "image_url",
         "description",
@@ -53,6 +57,7 @@ class PinEncoder(ModelEncoder):
 class UserProfileEncoder(ModelEncoder):
     model = UserProfile
     properties = [
+        "id",
         "user",
         "bio",
     ]
