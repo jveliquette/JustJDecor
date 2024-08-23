@@ -58,7 +58,7 @@ return (
                 images.map((image, index) => (
                     <div key={index} className="col-md-4 col-lg-3 mb-4">
                         <div className="card h-100">
-                            <img src={image.picture_url} alt={`Inspiration ${index}`} className="card-img-top img-fluid" style={{ objectFit: "cover", height: "300px" }} onClick={() => handleImageClick(image)} data-bs-toggle="modal" data-bs-target="#imageModal"/>
+                            <img src={image.picture_url} alt={`Inspiration ${index}`} className="card-img-top img-fluid" style={{ objectFit: "cover", height: "300px", border: "none" }} onClick={() => handleImageClick(image)} data-bs-toggle="modal" data-bs-target="#imageModal"/>
                         </div>
                     </div>
                 ))

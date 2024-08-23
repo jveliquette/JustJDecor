@@ -89,10 +89,10 @@ function RoomsList() {
                 {error && <div className="alert alert-danger">Failed to load rooms.</div>}
                 {rooms.map(room => (
                     <div className="col-md-4 mb-4" key={room.id}>
-                        <div className="expand-card card bg-dark">
+                        <div className="expand-card card bg-dark text-center">
                             <div className="card-body mb-5">
                                 <h5 className="card-title text-light">{room.name}</h5>
-                                {/* <p className="card-text">{room.image_url}</p> */}
+                                <img src={room.image_url} alt={room.name} className="img-fluid rounded mb-3" style={{ maxHeight: '200px', objectFit: 'cover', width: '100%' }} />
                                 <Link to={`/rooms/${room.id}`} className="btn btn-secondary">View Room</Link>
                                 <button className="btn btn-light ms-2" onClick={() => handleShowDeleteModal(room)}>Delete <i className="fa-solid fa-trash"></i></button>
                             </div>

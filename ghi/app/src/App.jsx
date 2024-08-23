@@ -9,6 +9,7 @@ import WishList from "./WishList.jsx";
 import Profile from "./Profile.jsx";
 import ProjectsList from "./ProjectsList.jsx";
 import ProjectDetails from "./ProjectDetails.jsx";
+import RoomDetail from "./RoomDetail.jsx";
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
 				<Routes>
 				<Route path="/" element={<MainPage />} />
 					<Route path="/rooms" element={<RoomsList />} />
+					<Route path="/rooms/:roomId" element={<RoomDetail />} />
 					<Route path="/projects/:id" element={<ProjectDetails />} />
 					<Route path="/ideas" element={<IdeasPage />} />
 					<Route path="/wishlist" element={<WishList />} />

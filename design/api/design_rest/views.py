@@ -80,6 +80,11 @@ def api_project(request, id):
         project.delete()
         return JsonResponse({"deleted": True})
 
+@require_http_methods(["GET"])
+def api_projects_by_room(request, room_id):
+    room = get_object_or_404(Room, id=room_id)
+    projects = Project.objects.filter(room=room)
+    return JsonResponse({"projects": projects}, encoder=ProjectEncoder, safe=False)
 
 
 # WishlistItem Views
