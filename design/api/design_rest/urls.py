@@ -3,7 +3,8 @@ from .views import (
     api_rooms, api_room, api_projects, api_project,
     api_wishlist_items, api_wishlist_item, api_pins,
     api_pin, api_user_profiles, api_user_profile,
-    api_search_inspiration, api_main_photos, api_projects_by_room
+    api_search_inspiration, api_main_photos, api_projects_by_room,
+    api_notes, api_note
 )
 
 urlpatterns = [
@@ -13,6 +14,9 @@ urlpatterns = [
     path('projects/', api_projects, name='api_projects'),
     path('projects/<int:id>/', api_project, name='api_project'),
     path('rooms/<int:room_id>/projects/', api_projects_by_room, name='api_projects_by_room'),
+
+    path('rooms/<int:room_id>/notes/', api_notes, name='api_notes'),
+    path('notes/<int:note_id>/', api_note, name='api_note'),
 
     path('wishlist-items/', api_wishlist_items, name='api_wishlist_items'),
     path('wishlist-items/<int:id>/', api_wishlist_item, name='api_wishlist_item'),

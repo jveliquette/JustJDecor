@@ -1,5 +1,5 @@
 from common.json import ModelEncoder
-from .models import Room, Project, WishlistItem, Pin, UserProfile
+from .models import Room, Project, WishlistItem, Pin, UserProfile, Note
 
 class RoomEncoder(ModelEncoder):
     model = Room
@@ -17,6 +17,18 @@ class ProjectEncoder(ModelEncoder):
         "description",
         "room",
         "created_at",
+    ]
+    encoders = {
+        "room": RoomEncoder(),
+    }
+
+class NoteEncoder(ModelEncoder):
+    model = Note
+    properties = [
+        "id",
+        "content",
+        "completed",
+        "room",
     ]
     encoders = {
         "room": RoomEncoder(),

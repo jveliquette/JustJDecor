@@ -22,6 +22,13 @@ class Project(models.Model):
     def __str__(self):
         return self.name
 
+class Note(models.Model):
+    content = models.TextField()
+    completed = models.BooleanField(default=False)
+    room = models.ForeignKey(Room, related_name='notes', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.content} ({'Completed' if self.completed else 'Incomplete'})"
 
 class WishlistItem(models.Model):
     STATUS_CHOICES = [

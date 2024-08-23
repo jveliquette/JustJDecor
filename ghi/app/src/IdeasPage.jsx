@@ -45,14 +45,14 @@ function IdeasPage() {
 
 return (
     <div className="container mt-4">
-        <div className="row mb-4">
-            <div className="col">
-                <input type="text" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search for inspiration..." className="form-control form-control-lg"/>
+            <div className="row m-4">
+                <div className="col">
+                    <input type="text" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search for inspiration..." className="form-control form-control-lg bg-dark text-light border-secondary"/>
+                </div>
+                <div className="col-auto">
+                    <button onClick={handleSearch} className="btn btn-primary btn-lg">Search</button>
+                </div>
             </div>
-            <div className="col-auto">
-                <button onClick={handleSearch} className="btn btn-dark btn-lg">Search</button>
-            </div>
-        </div>
         <div className="row">
             {images.length > 0 ? (
                 images.map((image, index) => (

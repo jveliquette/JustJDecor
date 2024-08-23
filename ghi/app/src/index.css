@@ -90,11 +90,16 @@ span {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Darkens the background */
-    z-index: 1040; /* Ensure it's behind the modal */
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1040;
     display: none;
 }
 
 .modal-overlay.show {
     display: block;
+}
+
+input::placeholder {
+    color: lightgrey !important;
+    opacity: 1 ;
 }
