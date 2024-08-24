@@ -10,6 +10,7 @@ import Profile from "./Profile.jsx";
 import ProjectsList from "./ProjectsList.jsx";
 import ProjectDetails from "./ProjectDetails.jsx";
 import RoomDetail from "./RoomDetail.jsx";
+import ProjectPins from "./ProjectPins.jsx";
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
 				<Route path="/" element={<MainPage />} />
 					<Route path="/rooms" element={<RoomsList />} />
 					<Route path="/rooms/:roomId" element={<RoomDetail />} />
+					<Route path="/projects/:projectId/pins" element={<ProjectPins />} />
 					<Route path="/projects/:id" element={<ProjectDetails />} />
 					<Route path="/ideas" element={<IdeasPage />} />
 					<Route path="/wishlist" element={<WishList />} />

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Notes from './Notes';
+import { Link } from 'react-router-dom';
 
 function RoomDetail() {
     const { roomId } = useParams();
@@ -106,8 +107,8 @@ function RoomDetail() {
                                     <p className='card-text text-light'>{project.description}</p>
                                 </div>
                                 <div className='card-body'>
-                                    <button className='btn btn-secondary'>View Wishlist <i className="fas fa-heart"></i></button>
-                                    <button className='btn btn-light ms-2'>View Pins <i className="fas fa-thumbtack"></i></button>
+                                    <button className='btn btn-outline-info'>Wishlist <i className="fas fa-heart"></i></button>
+                                    <Link to={`/projects/${project.id}/pins`} className='btn btn-outline-info ms-2'>Pins <i className="fas fa-thumbtack"></i></Link>
                                 </div>
                                 <div className='card-footer text-light'>
                                     Created at: {new Date(project.created_at).toLocaleDateString()}
@@ -135,7 +136,7 @@ function RoomDetail() {
                             <div className='card bg-dark h-100 text-light d-flex align-items-center justify-content-center'>
                                 <div className='card-body text-center'>
                                     <h5 className='card-title mb-4'>Add a Project</h5>
-                                    <button className='btn btn-outline-primary' onClick={handleProjectClick}><i className="fas fa-plus"></i></button>
+                                    <button className='btn btn-outline-info' onClick={handleProjectClick}><i className="fas fa-plus"></i></button>
                                 </div>
                             </div>
                         )}

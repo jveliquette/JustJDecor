@@ -290,6 +290,15 @@ def api_pin(request, id):
             {"deleted": True}
         )
 
+@require_http_methods(["GET"])
+def api_pins_by_project(request, project_id):
+    pins = Pin.objects.filter(project_id=project_id)
+    return JsonResponse(
+        {"pins": pins},
+        encoder=PinEncoder,
+        safe=False
+    )
+
 
 
 # UserProfile Views

@@ -4,7 +4,7 @@ from .views import (
     api_wishlist_items, api_wishlist_item, api_pins,
     api_pin, api_user_profiles, api_user_profile,
     api_search_inspiration, api_main_photos, api_projects_by_room,
-    api_notes, api_note
+    api_notes, api_note, api_pins_by_project
 )
 
 urlpatterns = [
@@ -23,6 +23,7 @@ urlpatterns = [
 
     path('pins/', api_pins, name='api_pins'),
     path('pins/<int:id>/', api_pin, name='api_pin'),
+    path('projects/<int:project_id>/pins/', api_pins_by_project, name='api_pins_by_project'),
 
     path('user-profiles/', api_user_profiles, name='api_user_profiles'),
     path('user-profiles/<int:id>/', api_user_profile, name='api_user_profile'),
