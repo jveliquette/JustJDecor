@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
+import PinModal from "./PinModal";
+import { ToastContainer } from "react-toastify";
 
 function ProjectPins() {
     const { projectId } = useParams();
     const [pins, setPins] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [showPinModal, setShowPinModal] = useState(false);
+    const [selectedPin, setSelectedPin] = useState(null);
 
     const fetchProjectPins = async () => {
         try {
@@ -22,16 +26,37 @@ function ProjectPins() {
         }
     };
 
+    const handleDetailsClick = (pin) => {
+        setSelectedPin(pin);
+        setShowPinModal(true);
+    };
+
+    const handleCloseModal = () => {
+        setShowPinModal(false);
+        setSelectedPin(null);
+    };
+
     useEffect(() => {
         fetchProjectPins();
     }, [projectId]);
 
     if (loading) {
-        return <p>Loading pins...</p>;
+        return (
+            <div className="text-center mt-5">
+                <p>Loading pins...</p>
+            </div>
+        );
     }
 
     if (pins.length === 0) {
-        return <p>No pins found for this project.</p>;
+        return (
+            <div className="text-center mt-5">
+                <p>No pins found for this project.</p>
+                <Link to="/ideas" className="btn btn-primary">
+                    Get Ideas
+                </Link>
+            </div>
+        );
     }
 
     return (
@@ -40,19 +65,21 @@ function ProjectPins() {
             <div className="row">
                 {pins.map((pin) => (
                     <div className="col-md-4 mb-4" key={pin.id}>
-                        <div className="card bg-dark text-light">
-                            <img src={pin.image_url} alt={pin.title} className="card-img-top" />
-                            <div className="card-body">
-                                <h5 className="card-title">{pin.title}</h5>
-                                <p className="card-text">{pin.description}</p>
-                                <p className="card-text">
-                                    <small className="text-muted">Pinned on {new Date(pin.pinned_at).toLocaleDateString()}</small>
-                                </p>
+                        <div className="card bg-dark text-light expand-card">
+                            <img src={pin.image_url} alt={pin.title} className="card-img-top img-fluid" style={{ objectFit: "cover", height: "300px", border: "none" }}/>
+                            <div className="card-footer bg-secondary text-center pin-footer">
+                                <button className="btn btn-secondary" onClick={() => handleDetailsClick(pin)}>Details</button>
                             </div>
                         </div>
                     </div>
                 ))}
             </div>
+
+            {showPinModal && <div className="modal-overlay show"></div>}
+            {showPinModal && (
+                <PinModal pin={selectedPin} onClose={handleCloseModal} fetchProjectPins={fetchProjectPins} />
+            )}
+            <ToastContainer />
         </div>
     );
 }

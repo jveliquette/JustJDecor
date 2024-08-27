@@ -103,3 +103,13 @@ input::placeholder {
     color: lightgrey !important;
     opacity: 1 ;
 }
+
+.pin-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+    padding: 10px !important;
+}
+
+.pin-footer button {
+    width: 100%;
+    border: none;
+}

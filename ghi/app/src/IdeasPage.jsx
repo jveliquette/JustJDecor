@@ -59,7 +59,7 @@ function IdeasPage() {
         const pinData = {
             title: "Pinned Image",
             image_url: selectedImage.picture_url,
-            description: "Pinned from IdeasPage",
+            description: "Pinned from Ideas",
             project: selectedProject,
         };
 
@@ -92,17 +92,13 @@ return (
             </div>
         </div>
         <div className="row">
-            {images.length > 0 ? (
-                images.map((image, index) => (
+                {images.map((image, index) => (
                     <div key={index} className="col-md-4 col-lg-3 mb-4">
-                        <div className="card h-100">
-                            <img src={image.picture_url} alt={`Inspiration ${index}`} className="card-img-top img-fluid" style={{ objectFit: "cover", height: "300px", border: "none" }} onClick={() => handleImageClick(image)} data-bs-toggle="modal" data-bs-target="#imageModal"/>
+                        <div className="card h-100" style={{ border: "none", boxShadow: "none", borderRadius: "0.5rem" }}>
+                            <img src={image.picture_url} alt={`Inspiration ${index}`} className="card-img-top img-fluid" style={{ objectFit: "cover", borderRadius: "0.5rem", height: "300px", border: "none", cursor: "pointer"}} onClick={() => handleImageClick(image)} data-bs-toggle="modal" data-bs-target="#imageModal"/>
                         </div>
                     </div>
-                ))
-            ) : (
-                <p>No images found. Try a different search term.</p>
-            )}
+                ))}
         </div>
         <div className="modal fade" id="imageModal" tabIndex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
             <div className="modal-dialog modal-lg">
