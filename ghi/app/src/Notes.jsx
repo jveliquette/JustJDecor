@@ -81,7 +81,7 @@ function Notes({ roomId }) {
                                     <input type="checkbox" checked={note.completed} onChange={() => handleToggleComplete(note)} className="form-check-input mt-0" aria-label="Checkbox for following text input" />
                                 </div>
                                 <input type="text" className={`form-control border-secondary bg-dark text-light ${note.completed ? 'text-decoration-line-through' : ''}`} value={note.content} readOnly />
-                                <button className="btn btn-outline-danger btn-med" onClick={() => handleDeleteNote(note.id)}><i className="fa-solid fa-trash"></i></button>
+                                <button className="btn btn-outline-danger btn-med" onClick={() => handleDeleteNote(note.id)}><i className="fas fa-trash"></i></button>
                             </div>
                         </li>
                     ))}

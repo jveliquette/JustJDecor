@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import AddRoomForm from "./AddRoomForm";
-import DeleteConfirmationModal from "./DeleteConfirmationModal";
+import RoomDeleteConfirmationModal from "./RoomDeleteConfirmationModal";
 import { Link } from "react-router-dom";
 
 function RoomsList() {
@@ -83,7 +83,7 @@ function RoomsList() {
                 <AddRoomForm onRoomAdded={handleRoomAdded} onClose={handleCloseModal} />
             )}
             {showDeleteModal && (
-                <DeleteConfirmationModal room={roomToDelete} onDeleteConfirm={handleDeleteRoom} onClose={handleCloseDeleteModal} />
+                <RoomDeleteConfirmationModal room={roomToDelete} onDeleteConfirm={handleDeleteRoom} onClose={handleCloseDeleteModal} />
             )}
             <div className="row">
                 {error && <div className="alert alert-danger">Failed to load rooms.</div>}

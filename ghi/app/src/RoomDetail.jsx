@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Notes from './Notes';
 import { Link } from 'react-router-dom';
+import ProjectDeleteConfirmationModal from './ProjectDeleteConfirmationModal';
 
 function RoomDetail() {
     const { roomId } = useParams();
@@ -11,6 +12,8 @@ function RoomDetail() {
     const [isAddingProject, setIsAddingProject] = useState(false);
     const [newProjectName, setNewProjectName] = useState("");
     const [newProjectDescription, setNewProjectDescription] = useState("");
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [selectedProject, setSelectedProject] = useState(null);
 
     const fetchRoomDetails = async () => {
         try {
@@ -69,6 +72,30 @@ function RoomDetail() {
         }
     };
 
+    const handleDeleteProject = (project) => {
+        setSelectedProject(project);
+        setShowDeleteModal(true);
+    };
+
+    const handleDeleteConfirm = async (projectId) => {
+        try {
+            const response = await fetch(`http://localhost:8100/api/projects/${projectId}/`, {
+                method: "DELETE",
+            });
+
+            if (response.ok) {
+                setProjects(projects.filter(project => project.id !== projectId));
+                console.log("Project deleted successfully.");
+                setShowDeleteModal(false);
+                setSelectedProject(null);
+            } else {
+                console.error("Failed to delete project.");
+            }
+        } catch (error) {
+            console.error("An error occurred while deleting the project:", error);
+        }
+    };
+
     const handleCancelProject = () => {
         resetForm();
     };
@@ -111,7 +138,10 @@ function RoomDetail() {
                                     <Link to={`/projects/${project.id}/pins`} className='btn btn-outline-info ms-2'>Pins <i className="fas fa-thumbtack"></i></Link>
                                 </div>
                                 <div className='card-footer text-light'>
-                                    Created at: {new Date(project.created_at).toLocaleDateString()}
+                                    Created on: {new Date(project.created_at).toLocaleDateString()}
+                                </div>
+                                <div className='card-footer text-light'>
+                                    <button className='btn btn-secondary btn-sm' onClick={() => handleDeleteProject(project)}>Delete <i className="fas fa-trash"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -121,14 +151,14 @@ function RoomDetail() {
                             <div className='card bg-dark h-100 text-light p-4'>
                                 <div className='mb-3'>
                                     <label className='form-label'>Project Name</label>
-                                    <input type="text" className='form-control bg-dark text-light border-secondary' value={newProjectName} onChange={(e) => setNewProjectName(e.target.value)} />
+                                    <input type="text" className='form-control bg-dark text-light border-secondary' required value={newProjectName} onChange={(e) => setNewProjectName(e.target.value)} />
                                 </div>
                                 <div className='mb-3'>
                                     <label className='form-label'>Project Description</label>
                                     <textarea className='form-control bg-dark text-light border-secondary' value={newProjectDescription} onChange={(e) => setNewProjectDescription(e.target.value)} rows="3" />
                                 </div>
                                 <div className='text-center'>
-                                    <button className='btn btn-primary me-2' onClick={handleSaveProject}>Save</button>
+                                    <button className='btn btn-info me-2' onClick={handleSaveProject}>Save</button>
                                     <button className='btn btn-secondary' onClick={handleCancelProject}>Cancel</button>
                                 </div>
                             </div>
@@ -143,6 +173,11 @@ function RoomDetail() {
                     </div>
                 </div>
             <Notes roomId={roomId} />
+
+            {showDeleteModal && <div className="modal-overlay show"></div>}
+            {showDeleteModal && (
+                <ProjectDeleteConfirmationModal project={selectedProject} onDeleteConfirm={handleDeleteConfirm} onClose={() => setShowDeleteModal(false)} />
+            )}
         </div>
     );
 }
