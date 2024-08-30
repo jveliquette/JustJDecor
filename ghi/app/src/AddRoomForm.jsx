@@ -53,7 +53,7 @@ function AddRoomForm({ onRoomAdded, onClose }) {
                             </div>
                             <div className="form-group">
                                 <label htmlFor="image_url" className="text-dark">Image URL</label>
-                                <input className="form-control" id="image_url"value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} required />
+                                <input type="url" className="form-control" id="image_url"value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} required />
                             </div>
                             {error && <div className="alert alert-danger">Failed to add room.</div>}
                             <button type="submit" className="btn btn-primary mt-2">Add Room</button>
