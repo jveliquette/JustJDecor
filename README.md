@@ -7,14 +7,15 @@ JustJDecor is a web application focused towards homeowners to manage home remode
 - **Description:** Manages rooms, projects, notes, pins, inspiration, wishlist items, and users.
 - **Base URL:** `http://localhost:8100`
 - **URLS:** "/api/rooms/", "/api/projects/", "/api/notes/", "/api/pins/", "/api/search-inspiration/", "/api/main-photos/"
-    -**Work In Progress URLS:** "/api/wishlist-items/", "/api/user-profiles/"
+- **Work In Progress URLS:** "/api/wishlist-items/", "/api/user-profiles/"
 - **Port:** `8100`
+- **Pexels API Integration**
 
 #### 2. React Frontend
 - **Description:** The frontend application for interacting with the Design API.
 - **Base URL:** `http://localhost:5173`
 - **URLs:** "/rooms/", "/rooms/{roomId}/"/ideas/", "/projects/{roomId}/pins/",
-    -**Work In Progress URLS:** "/wishlist/", and "/profile/"
+- **Work In Progress URLS:** "/wishlist/", and "/profile/"
 - **Port:** `5173`
 
 ## Getting Started
@@ -36,6 +37,16 @@ JustJDecor is a web application focused towards homeowners to manage home remode
     docker-compose up
 3. **Accessing the Application:**
     The app can be accessed at http://localhost:5173/ in the browser.
+
+### Environment Variables
+This project requires the following environment variables to be set in order to view photos in the development phase:
+
+- `PEXELS_API_KEY`: Your Pexels API key. You can obtain one by signing up at [Pexels Developer](https://www.pexels.com/api/).
+
+To set it, create a `.env` file in the project root with the following content:
+```bash
+PEXELS_API_KEY=your_actual_api_key
+```
 
 ## Design microservice
 ### Models:
