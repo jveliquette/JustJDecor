@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import PinModal from "./PinModal";
 import { ToastContainer } from "react-toastify";
+const API_BASE_URL = process.env.REACT_APP_API_URL;
 
 function ProjectPins() {
     const { projectId } = useParams();
@@ -12,7 +13,7 @@ function ProjectPins() {
 
     const fetchProjectPins = async () => {
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/projects/${projectId}/pins/`);
+            const response = await fetch(`${API_BASE_URL}/api/projects/${projectId}/pins/`);
             if (response.ok) {
                 const data = await response.json();
                 setPins(data.pins);

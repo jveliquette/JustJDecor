@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+const API_BASE_URL = process.env.REACT_APP_API_URL;
 
 function ProjectDetails() {
     const { id } = useParams();
@@ -7,7 +8,7 @@ function ProjectDetails() {
     const [error, setError] = useState(false);
 
     const fetchProjectDetails = async () => {
-        const url = `${process.env.REACT_APP_API_URL}/api/projects/${id}/`;
+        const url = `${API_BASE_URL}/api/projects/${id}/`;
         try {
             const response = await fetch(url);
             if (response.ok) {

@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
+const API_BASE_URL = process.env.REACT_APP_API_URL;
 
 function ProjectsList() {
     const [projects, setProjects] = useState([]);
     const [error, setError] = useState(false);
 
     const fetchProjects = async () => {
-        const url = `${process.env.REACT_APP_API_URL}/api/projects/`;
+        const url = `${API_BASE_URL}/api/projects/`;
         try {
             const response = await fetch(url);
             if (response.ok) {

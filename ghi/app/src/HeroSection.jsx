@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
+const API_BASE_URL = process.env.REACT_APP_API_URL;
 
 function HeroSection() {
     const [photos, setPhotos] = useState([]);
 
   const fetchPhotos = async () => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/main-photos/`);
+      const response = await fetch(`${API_BASE_URL}/api/main-photos/`);
       if (response.ok) {
         const data = await response.json();
         setPhotos(data.photos);

@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+const API_BASE_URL = process.env.REACT_APP_API_URL;
+
 function AddRoomForm({ onRoomAdded, onClose }) {
     const [name, setName] = useState("");
     const [imageUrl, setImageUrl] = useState("");
@@ -7,7 +9,7 @@ function AddRoomForm({ onRoomAdded, onClose }) {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const url = `${process.env.REACT_APP_API_URL}/api/rooms/`;
+        const url = `${API_BASE_URL}/api/rooms/`;
         const data = {};
         data.name = name;
         data.image_url = imageUrl

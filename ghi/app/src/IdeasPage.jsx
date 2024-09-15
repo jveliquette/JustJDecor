@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+const API_BASE_URL = process.env.REACT_APP_API_URL;
 
 function IdeasPage() {
     const [query, setQuery] = useState("");
@@ -16,7 +17,7 @@ function IdeasPage() {
     }, []);
 
     const fetchRooms = async () => {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/rooms/`);
+        const response = await fetch(`${API_BASE_URL}/api/rooms/`);
         if (response.ok) {
             const data = await response.json();
             setRooms(data.rooms);
@@ -31,7 +32,7 @@ function IdeasPage() {
     }
 
     const fetchProjects = async (roomId) => {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/rooms/${roomId}/projects/`);
+        const response = await fetch(`${API_BASE_URL}/api/rooms/${roomId}/projects/`);
         if (response.ok) {
             const data = await response.json();
             setProjects(data.projects);
@@ -41,7 +42,7 @@ function IdeasPage() {
     }
 
     const handleSearch = async () => {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/search-inspiration?query=${query}`);
+        const response = await fetch(`${API_BASE_URL}/api/search-inspiration?query=${query}`);
         if (response.ok) {
             const data = await response.json();
             setImages(data.photos);
@@ -63,7 +64,7 @@ function IdeasPage() {
             project: selectedProject,
         };
 
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/pins/`, {
+        const response = await fetch(`${API_BASE_URL}/api/pins/`, {
             method: "POST",
             body: JSON.stringify(pinData),
             headers: {

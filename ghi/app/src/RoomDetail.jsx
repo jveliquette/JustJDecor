@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import Notes from './Notes';
 import { Link } from 'react-router-dom';
 import ProjectDeleteConfirmationModal from './ProjectDeleteConfirmationModal';
+const API_BASE_URL = process.env.REACT_APP_API_URL;
 
 function RoomDetail() {
     const { roomId } = useParams();
@@ -17,12 +18,12 @@ function RoomDetail() {
 
     const fetchRoomDetails = async () => {
         try {
-            const roomResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/rooms/${roomId}/`);
+            const roomResponse = await fetch(`${API_BASE_URL}/api/rooms/${roomId}/`);
             if (roomResponse.ok) {
                 const roomData = await roomResponse.json();
                 setRoom(roomData);
 
-                const projectsResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/rooms/${roomId}/projects/`);
+                const projectsResponse = await fetch(`${API_BASE_URL}/api/rooms/${roomId}/projects/`);
                 if (projectsResponse.ok) {
                     const projectsData = await projectsResponse.json();
                     setProjects(projectsData.projects);
@@ -53,7 +54,7 @@ function RoomDetail() {
         data.room = roomId;
 
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/projects/`, {
+            const response = await fetch(`${API_BASE_URL}/api/projects/`, {
                 method: "POST",
                 body: JSON.stringify(data),
                 headers: {
@@ -79,7 +80,7 @@ function RoomDetail() {
 
     const handleDeleteConfirm = async (projectId) => {
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/projects/${projectId}/`, {
+            const response = await fetch(`${API_BASE_URL}/api/projects/${projectId}/`, {
                 method: "DELETE",
             });
 

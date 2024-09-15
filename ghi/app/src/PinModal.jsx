@@ -1,11 +1,12 @@
 import React from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+const API_BASE_URL = process.env.REACT_APP_API_URL;
 
 function PinModal({ pin, onClose, fetchProjectPins }) {
     const handleUnpin = async () => {
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/pins/${pin.id}/`, {
+            const response = await fetch(`${API_BASE_URL}/api/pins/${pin.id}/`, {
                 method: "DELETE",
             });
 
