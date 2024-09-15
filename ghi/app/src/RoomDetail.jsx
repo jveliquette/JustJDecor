@@ -17,12 +17,12 @@ function RoomDetail() {
 
     const fetchRoomDetails = async () => {
         try {
-            const roomResponse = await fetch(`http://${process.env.REACT_APP_API_URL}/api/rooms/${roomId}/`);
+            const roomResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/rooms/${roomId}/`);
             if (roomResponse.ok) {
                 const roomData = await roomResponse.json();
                 setRoom(roomData);
 
-                const projectsResponse = await fetch(`http://${process.env.REACT_APP_API_URL}/api/rooms/${roomId}/projects/`);
+                const projectsResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/rooms/${roomId}/projects/`);
                 if (projectsResponse.ok) {
                     const projectsData = await projectsResponse.json();
                     setProjects(projectsData.projects);
@@ -53,7 +53,7 @@ function RoomDetail() {
         data.room = roomId;
 
         try {
-            const response = await fetch(`http://${process.env.REACT_APP_API_URL}/api/projects/`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/projects/`, {
                 method: "POST",
                 body: JSON.stringify(data),
                 headers: {
@@ -79,7 +79,7 @@ function RoomDetail() {
 
     const handleDeleteConfirm = async (projectId) => {
         try {
-            const response = await fetch(`http://${process.env.REACT_APP_API_URL}/api/projects/${projectId}/`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/projects/${projectId}/`, {
                 method: "DELETE",
             });
 

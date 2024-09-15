@@ -7,7 +7,7 @@ function ProjectDetails() {
     const [error, setError] = useState(false);
 
     const fetchProjectDetails = async () => {
-        const url = `http://localhost:8090/api/projects/${id}/`;
+        const url = `${process.env.REACT_APP_API_URL}/api/projects/${id}/`;
         try {
             const response = await fetch(url);
             if (response.ok) {

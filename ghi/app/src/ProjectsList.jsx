@@ -5,7 +5,7 @@ function ProjectsList() {
     const [error, setError] = useState(false);
 
     const fetchProjects = async () => {
-        const url = `http://${process.env.REACT_APP_API_URL}/api/projects/`;
+        const url = `${process.env.REACT_APP_API_URL}/api/projects/`;
         try {
             const response = await fetch(url);
             if (response.ok) {

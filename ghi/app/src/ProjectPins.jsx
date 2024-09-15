@@ -12,7 +12,7 @@ function ProjectPins() {
 
     const fetchProjectPins = async () => {
         try {
-            const response = await fetch(`http://${process.env.REACT_APP_API_URL}/api/projects/${projectId}/pins/`);
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/projects/${projectId}/pins/`);
             if (response.ok) {
                 const data = await response.json();
                 setPins(data.pins);

@@ -16,7 +16,7 @@ function IdeasPage() {
     }, []);
 
     const fetchRooms = async () => {
-        const response = await fetch(`http://${process.env.REACT_APP_API_URL}/api/rooms/`);
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/rooms/`);
         if (response.ok) {
             const data = await response.json();
             setRooms(data.rooms);
@@ -31,7 +31,7 @@ function IdeasPage() {
     }
 
     const fetchProjects = async (roomId) => {
-        const response = await fetch(`http://${process.env.REACT_APP_API_URL}/api/rooms/${roomId}/projects/`);
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/rooms/${roomId}/projects/`);
         if (response.ok) {
             const data = await response.json();
             setProjects(data.projects);
@@ -41,7 +41,7 @@ function IdeasPage() {
     }
 
     const handleSearch = async () => {
-        const response = await fetch(`http://${process.env.REACT_APP_API_URL}/api/search-inspiration?query=${query}`);
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/search-inspiration?query=${query}`);
         if (response.ok) {
             const data = await response.json();
             setImages(data.photos);
@@ -63,7 +63,7 @@ function IdeasPage() {
             project: selectedProject,
         };
 
-        const response = await fetch(`http://${process.env.REACT_APP_API_URL}/api/pins/`, {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/pins/`, {
             method: "POST",
             body: JSON.stringify(pinData),
             headers: {

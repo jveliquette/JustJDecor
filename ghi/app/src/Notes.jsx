@@ -7,7 +7,7 @@ function Notes({ roomId }) {
 
     const fetchNotes = async () => {
         try {
-            const response = await fetch(`http://${process.env.REACT_APP_API_URL}/api/rooms/${roomId}/notes/`);
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/rooms/${roomId}/notes/`);
             if (response.ok) {
                 const data = await response.json();
                 setNotes(data.notes);
@@ -26,7 +26,7 @@ function Notes({ roomId }) {
     const handleAddNote = async () => {
         if (newNote.trim() !== '') {
             try {
-                const response = await fetch(`http://${process.env.REACT_APP_API_URL}/api/rooms/${roomId}/notes/`, {
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/api/rooms/${roomId}/notes/`, {
                     method: 'POST',
                     body: JSON.stringify({ content: newNote, completed: false }),
                     headers: {
@@ -48,7 +48,7 @@ function Notes({ roomId }) {
 
     const handleToggleComplete = async (note) => {
         const updatedNote = { ...note, completed: !note.completed };
-        await fetch(`http://${process.env.REACT_APP_API_URL}/api/notes/${note.id}/`, {
+        await fetch(`${process.env.REACT_APP_API_URL}/api/notes/${note.id}/`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -59,7 +59,7 @@ function Notes({ roomId }) {
     };
 
     const handleDeleteNote = async (noteId) => {
-        await fetch(`http://${process.env.REACT_APP_API_URL}/api/notes/${noteId}/`, {
+        await fetch(`${process.env.REACT_APP_API_URL}/api/notes/${noteId}/`, {
             method: 'DELETE',
         });
         setNotes(notes.filter((note) => note.id !== noteId));
