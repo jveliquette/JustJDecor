@@ -52,6 +52,7 @@ MIDDLEWARE = [
 ALLOWED_HOSTS = [
     "localhost",
     "design-api",
+    "justjdecor.onrender.com"
 ]
 
 CSRF_TRUSTED_ORIGINS = [
