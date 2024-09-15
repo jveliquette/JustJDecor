@@ -7,7 +7,7 @@ function AddRoomForm({ onRoomAdded, onClose }) {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const url = "http://localhost:8100/api/rooms/";
+        const url = `http://${process.env.REACT_APP_API_URL}/api/rooms/`;
         const data = {};
         data.name = name;
         data.image_url = imageUrl

@@ -6,7 +6,7 @@ function HeroSection() {
 
   const fetchPhotos = async () => {
     try {
-      const response = await fetch('http://localhost:8100/api/main-photos/');
+      const response = await fetch(`http://${process.env.REACT_APP_API_URL}/api/main-photos/`);
       if (response.ok) {
         const data = await response.json();
         setPhotos(data.photos);

@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 function PinModal({ pin, onClose, fetchProjectPins }) {
     const handleUnpin = async () => {
         try {
-            const response = await fetch(`http://localhost:8100/api/pins/${pin.id}/`, {
+            const response = await fetch(`http://${process.env.REACT_APP_API_URL}/api/pins/${pin.id}/`, {
                 method: "DELETE",
             });
 

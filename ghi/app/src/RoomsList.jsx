@@ -11,7 +11,7 @@ function RoomsList() {
     const [roomToDelete, setRoomToDelete] = useState(null);
 
     const fetchData = async () => {
-        const url = "http://localhost:8100/api/rooms/";
+        const url = `http://${process.env.REACT_APP_API_URL}/api/rooms/`;
         try {
             const response = await fetch(url);
             if (response.ok) {
@@ -44,7 +44,7 @@ function RoomsList() {
     };
 
     const handleDeleteRoom = async (roomId) => {
-        const url = `http://localhost:8100/api/rooms/${roomId}/`;
+        const url = `http://${process.env.REACT_APP_API_URL}/api/rooms/${roomId}/`;
         try {
             const response = await fetch(url, {
                 method: "DELETE",

@@ -30,6 +30,7 @@ DEBUG = True
 # Application definition
 
 INSTALLED_APPS = [
+    "corsheaders",
     "design_rest.apps.DesignRestConfig",
     'django.contrib.admin',
     'django.contrib.auth',
@@ -57,10 +58,12 @@ ALLOWED_HOSTS = [
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
+    "https://justjdecor.netlify.app/",
 ]
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
+    "https://justjdecor.netlify.app/",
 ]
 CORS_ALLOW_CREDENTIALS = True
 
