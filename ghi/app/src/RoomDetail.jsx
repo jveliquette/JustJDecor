@@ -115,7 +115,7 @@ function RoomDetail() {
     }
 
     return (
-        <div className="container mt-5">
+        <div className="ideas-page-container mt-5">
             <div className="card bg-dark mb-4">
                 <div className="card-body text-center">
                     <h1 className="card-title display-4 text-light">{room.name}</h1>
@@ -134,7 +134,7 @@ function RoomDetail() {
                                     <p className='card-text text-light'>{project.description}</p>
                                 </div>
                                 <div className='card-body'>
-                                    <button className='btn btn-outline-info'>Wishlist <i className="fas fa-heart"></i></button>
+                                    <Link to={`/wishlist`} className='btn btn-outline-info'>Wishlist <i className="fas fa-heart"></i></Link>
                                     <Link to={`/projects/${project.id}/pins`} className='btn btn-outline-info ms-2'>Pins <i className="fas fa-thumbtack"></i></Link>
                                 </div>
                                 <div className='card-footer text-light'>

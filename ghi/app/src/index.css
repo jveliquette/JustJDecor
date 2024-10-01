@@ -17,6 +17,9 @@ code {
 .footer-title {
     text-decoration: underline;
     text-underline-offset: 0.5rem;
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
 }
 
 .footer {
@@ -25,6 +28,24 @@ code {
     padding: 10px 0;
     width: 100%;
     margin-top: auto;
+}
+
+.footer p {
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.footer-link {
+    font-weight: 500;
+    font-size: 1.2rem;
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+    color: #0056b3;
+    text-decoration: underline;
 }
 
 .hero-section {
@@ -112,4 +133,178 @@ input::placeholder {
 .pin-footer button {
     width: 100%;
     border: none;
+}
+
+.ideas-page-container {
+    background-color: #2222225b;
+    color: #FFFFFF;
+    padding: 3rem 2rem;
+    border-radius: 2rem;
+}
+
+.inspo-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 45vh;
+    text-align: center;
+    color: white;
+    border-radius: 1rem;
+    margin-bottom: 3rem;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.inspo-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+}
+
+.inspo-description {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+    max-width: 600px;
+}
+
+.search-bar-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.search-input {
+    width: 65%;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid #555;
+    background-color: #444;
+    color: #ddd;
+}
+
+.search-button {
+    width: 30%;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    transition: background-color 0.3s;
+}
+
+.search-button:hover {
+    background-color: #0056b3;
+}
+
+
+.placeholder-section {
+    padding: 2rem;
+    background-color: #3B3F44;
+    border-radius: 1rem;
+    text-align: center;
+}
+
+.placeholder-title {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+.placeholder-cards {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.placeholder-card {
+    width: 320px;
+    background-color: #ffffff;
+    color: #333333;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    padding: 1rem;
+    text-align: left;
+}
+
+.placeholder-card:hover {
+    transform: translateY(-5px);
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.card-text {
+    font-size: 1rem;
+}
+
+.inspo-card-img-top {
+    height: auto;
+    margin-bottom: 1rem;
+    object-fit: cover;
+}
+
+.modal-body img {
+    border-radius: 0.5rem;
+    max-height: 500px;
+}
+
+.modal-footer {
+    justify-content: center;
+}
+
+input::placeholder {
+    color: lightgrey !important;
+    opacity: 1;
+}
+
+.icon-background {
+    background-color: rgba(128, 128, 128, 0.2);
+    border-radius: 50%;
+    padding: 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+    margin: 0 auto 1rem auto;
+}
+
+.icon-background:hover {
+    background-color: rgba(128, 128, 128, 0.4);
+}
+
+.navbar {
+    padding: 0.5rem 1rem;
+    width: 100%;
+}
+
+.navbar-brand {
+    font-size: 1.75rem !important;
+    font-weight: 700;
+    margin-right: 2rem !important;
+}
+
+/* .navbar-dark.bg-subtle {
+    background-color: #2222224d;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    height: 5rem;
+} */
+
+.navbar-nav .nav-item .nav-link {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-right: 1.5rem;
+    width: 100%;
+}
+
+.navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.1); /* Lighter border for toggler */
 }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { FaCouch, FaBed, FaUtensils } from 'react-icons/fa';
 
 function IdeasPage() {
     const [query, setQuery] = useState("");
@@ -40,14 +41,26 @@ function IdeasPage() {
         }
     }
 
-    const handleSearch = async () => {
-        const response = await fetch(`http://localhost:8100/api/search-inspiration?query=${query}`);
+    const handleSearch = async (searchQuery) => {
+        const queryToUse = searchQuery || query;
+
+        if (!queryToUse.trim()) {
+            console.error("Search query is empty");
+            return;
+        }
+
+        const response = await fetch(`http://localhost:8100/api/search-inspiration?query=${queryToUse}`);
         if (response.ok) {
             const data = await response.json();
             setImages(data.photos);
         } else {
             console.error("Failed to fetch images from Pexels");
         }
+    };
+
+    const handleCategorySearch = (category) => {
+        setQuery(category);
+        handleSearch(category);
     };
 
     const handleImageClick = (image) => {
@@ -81,16 +94,59 @@ function IdeasPage() {
 }
 
 return (
-    <div className="container mt-4">
+    <div className="mt-4 ideas-page-container">
         <ToastContainer />
-        <div className="row m-4">
-            <div className="col">
-                <input type="text" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search for inspiration..." className="form-control form-control-lg bg-dark text-light border-secondary"/>
-            </div>
-            <div className="col-auto">
-                <button onClick={handleSearch} className="btn btn-primary btn-lg">Search</button>
+
+        <div className="inspo-section bg-dark">
+            <h1 className="inspo-title">Find Your Inspiration</h1>
+            <p className="inspo-description">Discover ideas for your home decor and create beautiful spaces.</p>
+            <div className="search-bar-container">
+                <input
+                    type="text"
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    placeholder="Search for inspiration..."
+                    className="form-control form-control-lg bg-dark text-light border-secondary search-input"
+                />
+                <button onClick={() => handleSearch(query)} className="btn btn-primary btn-lg search-button">Search</button>
             </div>
         </div>
+
+    {images.length === 0 && (
+        <div className="placeholder-section">
+            <h2 className="placeholder-title">Explore Categories</h2>
+            <div className="placeholder-cards">
+                <div className="card placeholder-card" style={{cursor: "pointer"}} onClick={() => handleCategorySearch("Living room")}>
+                    <div className="inspo-card-img-top text-center icon-background" style={{ fontSize: "5rem", padding: "2rem" }}>
+                        <FaCouch />
+                    </div>
+                    <div className="card-body">
+                        <h5 className="card-title">Living Room Ideas</h5>
+                        <p className="card-text">Find inspiration for your living room.</p>
+                    </div>
+                </div>
+                <div className="card placeholder-card" style={{cursor: "pointer"}} onClick={() => handleCategorySearch("Bedroom")}>
+                    <div className="inspo-card-img-top text-center icon-background" style={{ fontSize: "5rem", padding: "2rem" }}>
+                        <FaBed />
+                    </div>
+                    <div className="card-body">
+                        <h5 className="card-title">Bedroom Ideas</h5>
+                        <p className="card-text">Create a cozy and relaxing bedroom space.</p>
+                    </div>
+                </div>
+                <div className="card placeholder-card" style={{cursor: "pointer"}} onClick={() => handleCategorySearch("Kitchen")}>
+                    <div className="inspo-card-img-top text-center icon-background" style={{ fontSize: "5rem", padding: "2rem" }}>
+                        <FaUtensils />
+                    </div>
+                    <div className="card-body">
+                        <h5 className="card-title">Kitchen Ideas</h5>
+                        <p className="card-text">Design a beautiful and functional kitchen.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )}
+
         <div className="row">
                 {images.map((image, index) => (
                     <div key={index} className="col-md-4 col-lg-3 mb-4">
@@ -100,6 +156,7 @@ return (
                     </div>
                 ))}
         </div>
+
         <div className="modal fade" id="imageModal" tabIndex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
             <div className="modal-dialog modal-lg">
                 <div className="modal-content">
