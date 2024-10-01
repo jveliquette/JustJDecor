@@ -8,7 +8,7 @@ JustJDecor is a web application focused towards homeowners to manage home remode
 #### 1. Design API
 
 - **Description:** Manages rooms, projects, notes, pins, inspiration, wishlist items, and users.
-- **Base URL:** `http://${process.env.REACT_APP_API_URL}`
+- **Base URL:** `http://localhost:8100`
 - **URLS:** "/api/rooms/", "/api/projects/", "/api/notes/", "/api/pins/", "/api/search-inspiration/", "/api/main-photos/"
 - **Work In Progress URLS:** "/api/wishlist-items/", "/api/user-profiles/"
 - **Port:** `8100`

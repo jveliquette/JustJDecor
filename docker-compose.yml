@@ -9,9 +9,10 @@ services:
         ports:
             - "5173:5173"
         environment:
-            HOST_OS: ${OS}
+            HOST_OS: ${OS:-"default_os_value"}
             NODE_ENV: development
             HOST: "0.0.0.0"
+            VITE_PEXELS_API_KEY: ${VITE_PEXELS_API_KEY}
         entrypoint: /bin/bash -c "npm install && npm run dev -- --host"
     database:
         image: postgres:14.2-bullseye

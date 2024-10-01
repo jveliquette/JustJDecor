@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-
+import os
 import dj_database_url
 from pathlib import Path
 
@@ -53,19 +53,31 @@ MIDDLEWARE = [
 ALLOWED_HOSTS = [
     "localhost",
     "design-api",
-    "justjdecor.onrender.com"
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
-    "https://justjdecor.netlify.app/",
 ]
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
-    "https://justjdecor.netlify.app",
+    "http://localhost:8100",
 ]
 CORS_ALLOW_CREDENTIALS = True
+
+CORS_ALLOW_METHODS = [
+    'GET',
+    'POST',
+    'PUT',
+    'DELETE',
+    'OPTIONS'
+]
+
+CORS_ALLOW_HEADERS = [
+    'content-type',
+    'authorization',
+    'X-Requested-With'
+]
 
 DJWTO_MODE = "TWO-COOKIES"
 DJWTO_ACCESS_TOKEN_LIFETIME = None

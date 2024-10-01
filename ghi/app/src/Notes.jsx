@@ -1,6 +1,5 @@
 import React from "react";
 import { useState, useEffect } from "react";
-const API_BASE_URL = process.env.REACT_APP_API_URL;
 
 function Notes({ roomId }) {
     const [notes, setNotes] = useState([]);
@@ -8,7 +7,7 @@ function Notes({ roomId }) {
 
     const fetchNotes = async () => {
         try {
-            const response = await fetch(`${API_BASE_URL}/api/rooms/${roomId}/notes/`);
+            const response = await fetch(`http://localhost:8100/api/rooms/${roomId}/notes/`);
             if (response.ok) {
                 const data = await response.json();
                 setNotes(data.notes);
@@ -27,7 +26,7 @@ function Notes({ roomId }) {
     const handleAddNote = async () => {
         if (newNote.trim() !== '') {
             try {
-                const response = await fetch(`${API_BASE_URL}/api/rooms/${roomId}/notes/`, {
+                const response = await fetch(`http://localhost:8100/api/rooms/${roomId}/notes/`, {
                     method: 'POST',
                     body: JSON.stringify({ content: newNote, completed: false }),
                     headers: {
@@ -49,7 +48,7 @@ function Notes({ roomId }) {
 
     const handleToggleComplete = async (note) => {
         const updatedNote = { ...note, completed: !note.completed };
-        await fetch(`${API_BASE_URL}/api/notes/${note.id}/`, {
+        await fetch(`http://localhost:8100/api/notes/${note.id}/`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -60,7 +59,7 @@ function Notes({ roomId }) {
     };
 
     const handleDeleteNote = async (noteId) => {
-        await fetch(`${API_BASE_URL}/api/notes/${noteId}/`, {
+        await fetch(`http://localhost:8100/api/notes/${noteId}/`, {
             method: 'DELETE',
         });
         setNotes(notes.filter((note) => note.id !== noteId));

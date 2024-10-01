@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import AddRoomForm from "./AddRoomForm";
 import RoomDeleteConfirmationModal from "./RoomDeleteConfirmationModal";
 import { Link } from "react-router-dom";
-const API_BASE_URL = process.env.REACT_APP_API_URL;
 
 function RoomsList() {
     const [rooms, setRooms] = useState([]);
@@ -12,7 +11,7 @@ function RoomsList() {
     const [roomToDelete, setRoomToDelete] = useState(null);
 
     const fetchData = async () => {
-        const url = `${API_BASE_URL}/api/rooms/`;
+        const url = `http://localhost:8100/api/rooms/`;
         try {
             const response = await fetch(url);
             if (response.ok) {
@@ -45,7 +44,7 @@ function RoomsList() {
     };
 
     const handleDeleteRoom = async (roomId) => {
-        const url = `${API_BASE_URL}/api/rooms/${roomId}/`;
+        const url = `http://localhost:8100/api/rooms/${roomId}/`;
         try {
             const response = await fetch(url, {
                 method: "DELETE",
