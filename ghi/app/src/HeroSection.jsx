@@ -24,7 +24,7 @@ function HeroSection() {
 
 
   return (
-    <div className="container-fluid hero-section mt-4">
+    <div className="container-fluid hero-section mt-4 mb-4">
       <div className="row justify-content-center align-items-center text-center">
         <div className="col-12 col-md-8">
           <div className="hero-paragraph p-4">

@@ -73,7 +73,7 @@ function RoomsList() {
 
 
     return (
-        <div className="ideas-page-container mt-4">
+        <div className="ideas-page-container mt-4 mb-5">
             <h1>My Rooms</h1>
             <button className="btn btn-primary my-4" onClick={handleOpenModal}>Add Room</button>
 

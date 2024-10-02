@@ -115,7 +115,7 @@ function RoomDetail() {
     }
 
     return (
-        <div className="ideas-page-container mt-5">
+        <div className="ideas-page-container mt-4 mb-5">
             <div className="card bg-dark mb-4">
                 <div className="card-body text-center">
                     <h1 className="card-title display-4 text-light">{room.name}</h1>

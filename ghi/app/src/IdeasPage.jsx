@@ -94,7 +94,7 @@ function IdeasPage() {
 }
 
 return (
-    <div className="mt-4 ideas-page-container">
+    <div className="mt-4 mb-5 ideas-page-container">
         <ToastContainer />
 
         <div className="inspo-section bg-dark">

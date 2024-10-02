@@ -10,7 +10,7 @@ function Profile() {
     }
 
     return (
-        <Container fluid className="ideas-page-container mt-4 vh-100 d-flex justify-content-center align-items-center">
+        <Container fluid className="ideas-page-container mt-4 mb-5 vh-100 d-flex justify-content-center align-items-center">
           <Row>
             <Col className="text-center">
               <h1 className="display-3">Coming Soon</h1>
