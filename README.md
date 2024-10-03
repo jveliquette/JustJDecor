@@ -37,7 +37,7 @@ JustJDecor is a web application focused towards homeowners to manage home remode
 1. **Clone the Repository**
    ```bash
    git clone https://github.com/jveliquette/JustJDecor.git
-   cd justj
+   cd JustJDecor
    ```
 2. **Start the Microservices**
    ```bash
