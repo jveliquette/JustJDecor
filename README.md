@@ -52,11 +52,15 @@ JustJDecor is a web application focused towards homeowners to manage home remode
 This project requires the following environment variables to be set in order to view photos in the development phase:
 
 - `PEXELS_API_KEY`: Your Pexels API key. You can obtain one by signing up at [Pexels Developer](https://www.pexels.com/api/).
+- `VITE_PEXELS_API_KEY`: Your Pexels API key. (same key as above)
+
+The application requires the key to be defined twice because the backend uses PEXELS_API_KEY, while the frontend, built with Vite, requires VITE_PEXELS_API_KEY for recognition and access to the Pexels API.
 
 To set it, create a `.env` file in the project root with the following content:
 
 ```bash
 PEXELS_API_KEY=your_actual_api_key
+VITE_PEXELS_API_KEY=your_actual_api_key
 ```
 
 ## Design microservice
