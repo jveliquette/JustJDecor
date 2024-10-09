@@ -2,6 +2,7 @@
 
 ![screenshot of home page](./README-IMG/main.png)
 JustJDecor is a web application focused towards homeowners to manage home remodeling projects and design ideas.
+
 [Video Demo](https://www.youtube.com/watch?v=ENVfDX7cOHA)
 
 ## Design
